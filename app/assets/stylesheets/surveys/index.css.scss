@@ -1,0 +1,98 @@
+div#content{
+  p.no-surveys{margin: 20px; font-size: 18px;}
+  p.application_description{margin: 20px 40px; font-size: 18px;}
+
+  ul.surveys{
+    margin: 0; padding: 0;
+    li.survey{
+      display: block;
+      position: relative;
+      @include clearfix;
+      width: 100%;
+      margin: 0;
+      padding: 8px 0;
+      border-bottom: solid 1px $secondary-color-light;
+
+      div{margin: 0; padding: 0;}
+
+      &.header{
+        font-weight: bold;
+        border-bottom: solid 2px $secondary-color-light;
+      }
+
+      .info{
+        @include span-columns(5,11);
+
+        h2, h3, p{padding-left: 12px; margin: 0;}
+        h2 em{font-weight: normal;font-size: 14px; color: $gray;}
+      }
+
+      .published-on, .expires-on{
+        @include span-columns(2,11);
+        text-align: center;
+      }
+
+      .responses-complete{
+        @include span-columns(1,11);
+        text-align: center;
+      }
+
+      .responses-incomplete{
+        @include span-columns(1 omega,11);
+        text-align: center;
+      }
+
+      .operations{
+        display: none;
+        position: absolute;
+        right: 6px;
+        bottom: 6px;
+
+        ul{
+          margin: 0 0 0 12px; padding: 0;
+          float: left;
+
+          li{
+            display: block; padding: 0; margin: 0 1px 0 0;
+            float: left;
+            list-style: none;
+            line-height: 20px;
+
+            a{
+              display: block;
+              color: $secondary-color-light;
+              font-weight: bold;
+              text-align: center;
+              line-height: 20px;
+              padding: 0 6px;
+              
+              &:hover{
+                background: $primary-color;
+                color: $secondary-color-light;
+                border: none;
+              }
+
+              &.disabled{display: none;}
+            }
+
+            &:first-child a{ @include border-radius(4px 0 0 4px); }
+            &:last-child a{ @include border-radius(0 4px 4px 0); }
+          }
+        }
+      }
+
+      &:hover .operations{
+        display: block;
+
+        ul li a{
+          background: $secondary-color-light;
+          color: $primary-color;
+
+          &:hover{
+            background: $secondary-color;
+          }
+        }
+      }
+    }
+  }
+}

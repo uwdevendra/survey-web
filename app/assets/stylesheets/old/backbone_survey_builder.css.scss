@@ -1,0 +1,207 @@
+@import 'susy';
+@import 'base_layout';
+@import "compass/css3/border-radius";
+
+$total-columns: 12;
+$column-width: 60px;
+$gutter-width: 20px;
+$grid-padding: 10px;
+
+$app_min_height: 600px;
+
+.container {
+  @include container;
+}
+
+h1#heading {
+  float: left;
+}
+
+#dummy_pane {
+  @include span-columns(7 omega, 12);
+  margin-bottom: 1em;
+  border: 1px solid $border_color;
+  padding: 1em;
+  height: $app_min_height;
+  overflow: auto;
+
+  div.sub_question_group {
+    border: 1px dotted $border_color;
+    @include border-radius(4px, 4px);
+    margin: 15px 0 15px 25px;
+    background-color: lighten(adjust_hue($c, 10), 46%);
+
+    .sub_question_group_message {
+      font-size : 0.8em;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 5px 0 1px 0;
+      color: #888;
+      font-style: italic;
+    }
+  }
+
+  div.dummy_question_content {
+    padding: 4px;
+    margin-bottom: 2px;
+    border: 1px dashed white;
+    label, .identifier_icon {
+      display: inline;
+      padding: 2px 2px;
+    }
+    &:hover {
+      color: $link_hover_color;
+      border: 1px dashed $border_color;
+      @include border-radius(4px, 4px);
+    }
+    div {
+      margin: 0.4em 0;
+    }
+    .delete_question {
+      float: right;
+      color: lighten($link_hover_color, 10%);
+      text-decoration: none;
+      font-family: sans-serif;
+      &:hover {
+        color: darken($link_hover_color, 20%);
+      }
+    }
+  }
+
+  textarea, input[type=text] {
+    width: 98%;
+  }
+
+  input[type=number]{
+    width: 25%;
+  }
+
+  abbr{
+    color: $e;
+  }
+
+  .active {
+    padding: 4px;
+    border: 1px solid #d9d6c4;
+    background: #eceadf url(images/ui-bg_fine-grain_10_eceadf_60x60.png) 50% 50% repeat;
+    color: #1f1f1f;
+    @include box-sizing(content-box);
+    @include border-radius(4px, 4px);
+  }
+
+  label {
+    display :block;
+    padding-bottom: 3px;
+  }
+
+  .inline_error {
+    color: $error_color;
+  }
+}
+
+#sidebar {
+  @include span-columns(4, 12);
+  font-size: 0.8em;
+  li a {
+    font-size: 0.9em;
+  }
+  clear: both;
+}
+
+#picker_pane {
+  border: 1px solid $border_color;
+  padding: 1em;
+  a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+  }
+}
+
+#settings_pane {
+  border: 1px solid $border_color;
+  padding: 1em;
+  max-height: 250px;
+  overflow: auto;
+
+  .delete_option {
+    background-image: url('/assets/minus.png');
+    width: 16px;
+    height: 16px;
+    float: right;
+  }
+
+  #questions {
+    padding: 4px;
+    background: $question_bg_color;
+    @include box-sizing(content-box);
+    @include border-radius(4px, 4px);
+    @include clearfix;
+
+    input#foo {
+      display: block !important;
+    }
+  }
+
+  .spinner {
+    float: right;
+    margin-right: 5px;
+  }
+}
+
+.inline_errors {
+  color: $error_color;
+}
+
+.upload_files{
+  margin: 2px 0px 2px 0px;
+  .btn-wrapper {
+    padding: 2px 5px 2px 2px;
+    text-align: center;
+    color: #fff;
+    @include border-radius(2px);
+    background: #b7a979;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  }
+}
+
+#actions {
+  @include span-columns(4, 12);
+  text-align: center;
+  input {
+    width : 50%;
+    margin-top: 4px;
+  }
+}
+
+#notifications {
+  float: right;
+  background: transparent;
+  p {
+    float: left;
+    text-align: center;
+    padding: 8px;
+  }
+  #spinner {
+    width: 50px;
+    height: 50px;
+    float: right;
+  }
+}
+
+#loading_overlay {
+  z-index: 99999;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+
+  .spinner {
+    position: absolute;
+    left: 46%;
+    top: 36%;
+  }
+}

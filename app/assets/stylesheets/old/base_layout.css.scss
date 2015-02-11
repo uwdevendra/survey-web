@@ -1,0 +1,154 @@
+@import 'susy';
+@import 'compass/reset';
+@import "compass/css3/border-radius";
+@import 'palette';
+
+@import url(http://fonts.googleapis.com/css?family=Dosis:600|Abel|PT+Sans:400,700italic&subset=latin,latin-ext);
+
+$app_width      : 960px;
+$total-columns  : 1;
+$column-width   : $app_width;
+$gutter-width   : 1px;
+$grid-padding   : $gutter-width;
+$base-font-size : 16px;
+
+$disabled-action: lighten($c, 16%);
+
+.container{
+  @include container;
+}
+
+.header, .footer {
+  width: 960px;
+  font-family: 'Abel', sans-serif;
+  .signin, .logout {
+    float: right;
+    padding: 0.1em 1em;
+    @include border-radius(10px);
+    background-color: lighten($header_color, 5%);
+    &:hover {
+      background-color: lighten($header_color, 10%);
+    }
+  }
+
+  .username {
+    float: right;
+    padding: 0.1em 1em;
+    color: $link_color;
+  }
+
+
+  a {
+    color: $link_color;
+    text-decoration: none;
+    &:hover { color: darken($link_color, 20%); }
+  }
+}
+
+.header {
+  position: relative;
+  margin: 0 auto 2em auto;
+  background-color: $header_color;
+  padding: 0.8em;
+  clear: both;
+  li {
+    padding-left: 25px;
+    font-size: 1em;
+    text-decoration: none;
+    display: inline;
+  }
+}
+
+p.error{
+  background-color: $error_bg_color;
+  border: 1px solid $error_border_color;
+  color: $error_color;
+  padding: 8px 35px 8px 14px;
+}
+
+p.notice{
+  background-color: $success_bg_color;
+  border-color: $success_border_color;
+  color: $success_color;
+  padding: 8px 35px 8px 14px;
+}
+
+h1 {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.03em; 
+  font-size: 3em;
+  display: inline;
+}
+
+h2{
+  font-size: 1.4em;
+  margin-bottom: 0.5em;
+}
+
+.footer{
+  margin: 2em auto 0 auto;
+  background-color: $footer_color;
+  padding: 0.8em;
+  clear: both;
+  li {
+    padding-left: 25px;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline;
+  }
+}
+
+li {
+  list-style-type: none;
+}
+
+@mixin call_to_action($background-color) {
+  color: $a !important;
+  padding: 6px 10px;
+  float: right;
+  background-color: $background-color;
+  font-size: 1.1em;
+  font-family: 'Abel', sans-serif;
+  text-decoration: none;
+  vertical-align: middle;
+  @include border-radius(9px);
+  i {
+    margin-right: 5px;
+  }
+  &:hover {
+    color: lighten($a, 5%) !important;
+    background-color: darken($background-color, 5%);
+  }
+}
+
+.pagination {
+  clear: both;
+  text-align: center;
+  padding: 1em;
+  cursor: default;
+  font-family: 'PT Sans', sans-serif;
+
+  & a, & span {
+    padding: 0.2em 0.3em; 
+  }
+  & .disabled {
+    color: $disabled-action; 
+  }
+  & .current {
+    font-style: normal;
+    font-weight: bold;
+    background-color: $a;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.5;
+  }
+  & a {
+    text-decoration: none;
+    color: $d;
+  }
+  & a:hover, & a:focus {
+    text-decoration: underline;
+  }
+}

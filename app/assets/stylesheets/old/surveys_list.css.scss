@@ -1,0 +1,150 @@
+@import 'susy';
+@import 'base_layout';
+@import "compass/css3";
+
+$total-columns: 12;
+$column-width: 60px;
+$gutter-width: 20px;
+$grid-padding: 10px;
+$disabled-action: lighten($c, 16%);
+
+$app_min_height: 600px;
+
+@import url(http://fonts.googleapis.com/css?family=Dosis:600|Abel|PT+Sans:400,700italic&subset=latin,latin-ext);
+
+.container {
+  @include container;
+}
+
+.admin_tasks {
+  display: inline;
+  float :right;
+  a {
+    color: $e;
+    text-decoration: none;
+  }
+  .filters {
+    display: block;
+    margin-top: 40px;
+    a {
+      font-family: 'Abel', sans-serif;
+      color: $e;
+      &:hover { text-decoration: underline; }
+    }
+  }
+}
+
+a.create_survey {
+  @include call_to_action($d);
+}
+
+.surveys_list {
+  @include span-columns(12, 12);
+  margin: 25px 0 20px 0;
+}
+
+.no_surveys {
+  @include span-columns(12, 12);
+  margin-top: 40px;
+  text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-size: 2em;
+}
+
+.survey {
+  padding: 10px 15px;
+  margin-top: 5px;
+  font-family: 'Abel', sans-serif;
+
+  &.draft {
+    background-color: $a;
+    &:hover { background-color: darken($a, 3%); }
+  }
+
+  &.finalized {
+    background-color: $b;
+    &:hover { background-color: darken($b, 3%); }
+  }
+
+  .organization_name {
+    color: $d;
+    margin-left: 5px;
+    font-size: 0.9em;
+    font-family: 'PT Sans', sans-serif;
+    font-style: italic;
+  }
+
+  .cso_admin_operations {
+    display: none;
+    float: right;
+  }
+
+  .description {
+    margin: 15px 25px;
+    text-align: justify;
+  }
+
+  .expiry_date {
+    margin: 15px 25px;
+    font-family: 'PT Sans', sans-serif;
+    margin-top: 10px;
+    font-size: 0.8em;
+    font-style: italic;
+  }
+
+  .name {
+    display: inline;
+    font-size: 1.8em;
+    color: $e;
+    font-family: 'Dosis', sans-serif;
+  }
+  .response_operations {
+    display: inline;
+  }
+
+  &:hover .cso_admin_operations, &.hover .cso_admin_operations { display: inline; }
+  .operations {
+    li {
+      display: inline;
+      a.disabled {
+        color: $disabled-action;
+        i { color: $disabled-action; }
+        &:hover {
+          color: $disabled-action;
+          text-decoration: none;
+          cursor: default;
+          i { color: $disabled-action; }
+        }
+      }
+      a {
+        i {
+          margin-right: 3px;
+          font-size: 1.1em;
+          color: $d;
+          text-decoration: none !important;
+        }
+        &:hover {
+          color: darken($d, 20%);
+          text-decoration: underline;
+          i { color: darken($d, 20%); }
+        }
+        color: $d;
+        font-family: 'Dosis', sans-serif;
+        font-size: 0.9em;
+        display: inline;
+        padding-left: 5px;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.name {
+  color: $a;
+  font-weight: bold;
+}
+.status {
+  font-size: 0.9em;
+  color: $d;
+  float: right;
+}

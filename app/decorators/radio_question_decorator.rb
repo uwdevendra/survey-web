@@ -1,0 +1,10 @@
+class RadioQuestionDecorator < QuestionWithOptionsDecorator
+  decorates :radio_question
+  delegate_all
+
+  def input_tag(f, opts={})
+    super(f,  :as => :custom_radio,
+              :collection => options.map { |o| [o.content, o.content, {:data => { :option_id => o.id } }] },
+              :input_html => { :disabled => opts[:disabled] })
+  end
+end

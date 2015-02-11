@@ -1,0 +1,101 @@
+<div class="container">
+  <header id="backBtnContainer">
+    <h2 class="left">
+      <a href="#" class="backBtn"></a>
+      <span>
+        Survey  overview
+        <span class="subHeading">
+          <%= @survey.name %>
+        </span>
+      </span>
+    </h2>
+  </header>
+  <div class="blue_tabs">
+    <ul class="tab-links">
+      <li >
+        <%= link_to  t('edit'), survey_build_path(@survey.id) if can? :build, @survey %>
+      </li>
+      <li class="active"><%= link_to t("overview"), survey_dashboard_index_path(@survey.id) if can?(:view_survey_dashboard, @survey) %></li>
+      <li>
+        <%= link_to t("Responses"), survey_responses_path(@survey.id)  if can?(:read, @survey) %>
+      </li>
+      <li>
+        <%= link_to t('reports'), report_survey_path(@survey.id) if can?(:report, @survey) && @survey.finalized? %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="survey_overview">
+    <div class="surveyDescription">
+      <h4>Description</h4>
+      <%= @survey.description %>
+      <div class="expDate">
+        Expires on -
+        <%= @survey.expiry_date %>
+      </div>
+    </div>
+    <div class="survey_summary">
+      <div class="org_summary">
+        <header>Summary</header>
+        <table>
+          <tr>
+            <td><span><%= @survey.reporter.total_complete_responses %></span>&nbsp;&nbsp; Complete</td>
+            <td><span><%= @survey.reporter.total_incomplete_responses %></span>&nbsp;&nbsp; Incomplete</td>
+            <td><span><%= @users_with_responses.count %></span>&nbsp;&nbsp;
+              <%= t('.users') %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+
+  <% if user_currently_logged_in? && @users_with_responses.blank? %>
+    <hr>
+    <p class="no-surveys"><%= t('No responses yet') %></p>
+  <% end %>
+
+  <% unless @users_with_responses.empty?%>
+    
+    <div id="pager1" class="pager">
+      <%= will_paginate @users_with_responses ,:page_links => false %>
+      <div class="page_info">
+        <%= page_entries_info @users_with_responses %>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+    <div class="tabBox">
+      <div class="tabContainer active" id="tab01">
+        <table class="table_list tablesorter" id="table1">
+          <thead>
+            <tr>
+              <th class="rightBorder"><%= t"Name" %></th>
+              <th class="rightBorder"><%= t"Role " %></th>
+              <th class="rightBorder"><%= t"Complete responses" %></th>
+              <th class="rightBorder"><%= t"Incomplete Responses" %></th>
+              <th><%= t("Last submited on") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users_with_responses.each do |user| %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.role.humanize.titleize %></td>
+                <% @survey.reporter.response_counts_for(user.id).each_in_reverse_chronological_order do |count| %>
+                  <td><%= count.incompletes %></td>
+                  <td><%= count.completes %></td>
+                  <td><%= count.month %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <% end %>
+
+  <%= @survey.reporter.response_counts_for(2).inspect %>
+</div>

@@ -1,0 +1,78 @@
+@import 'susy';
+@import 'base_layout';
+
+@import url(http://fonts.googleapis.com/css?family=Dosis:600|Abel|PT+Sans:400,700italic&subset=latin,latin-ext);
+
+table.surveys_table {  
+  margin: 30px auto 0 auto;
+  padding: 10px 15px;
+  border-collapse: separate; 
+  border-spacing: 0 10px;
+  
+  th {
+    font-family: 'Dosis', sans-serif;
+    font-size: 1.1em;
+  }
+
+  tbody tr {
+    font-family: 'PT Sans', sans-serif;
+    background-color: $b;
+    &.incomplete {
+      background-color: $a;
+    }
+  }
+
+  td, th {
+    &.actions {
+      float: right;
+      a {
+        font-family: 'Abel', sans-serif;      
+        font-size: 1em;
+        display: inline;
+        margin-left: 10px;
+        color: $c;
+        &:hover {
+          text-decoration: underline;
+          color: darken($c, 10%);
+          i {
+            text-decoration: none;
+            color: darken($c, 10%);
+          }
+        }
+        &.delete_response {
+          margin-left: 15px;
+        }
+      }
+    }
+    p.status {
+        text-align: left !important;
+        font-family: 'Abel', sans-serif;      
+        font-size: 1.2em;
+        display: inline;
+        color: $d;
+    }
+    text-align: center;
+    padding: 10px 20px;
+  }
+}
+
+a {
+  i {
+    margin-right: 5px;
+  }
+  text-decoration: none;
+  color: $e;
+}
+
+a.download_excel { 
+  @include call_to_action(lighten($d, 20%));
+  margin-right: 10px;
+  font-size: 0.9em;
+  display: inline;
+}
+
+a.add_response { 
+  clear: right;
+  display: inline;
+  @include call_to_action($d);
+}

@@ -1,0 +1,10 @@
+<surveyquestionchild  id="{{id}}" data-parentid="{{question_id}}" >
+ 	<div class="option-wrp">
+ 	<span class="qn_no">{{question_number}})</span>
+	<!-- <input type="checkbox" id="multichoice-option" disabled="true" class="regular-checkbox"></input> -->
+	<label for="multichoice-option" style="display:inline-block; float:left"></label>
+	
+	<%= render "templates/questions/option" %>
+	</div>
+	<div class="inline_errors">{{errors}}</div>
+</surveyquestionchild>

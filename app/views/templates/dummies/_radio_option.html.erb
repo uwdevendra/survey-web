@@ -1,0 +1,10 @@
+<surveyquestionchild  id="{{id}}" data-parentid="{{question_id}}" >
+  <span class="radio-option-row">
+    <span class="qn_no">{{question_number}})</span>
+    <!-- <input type="radio" disabled="true">{{content}}</input> -->
+    <!-- <input type="radio" id="radio-option" class="regular-radio" disabled="true"></input> -->
+  <label for="radio-option" style="display:inline-block; float:left"></label>
+  <%= render "templates/questions/option" %>
+  <div class="inline_errors">{{errors}}</div>
+</span>
+<!-- </surveyquestionchild> -->

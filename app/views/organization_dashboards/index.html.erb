@@ -1,0 +1,154 @@
+<div class="dashboard-wrapper">
+  <div class="left-sideBar">
+    <div class="org-shortInfo">
+      <!-- <p>Welcome to the Survey Manager this is your dashboard</p> -->
+      <h1>Infiniti Data</h1>
+      <div class="org-dashboard-logo">
+        <%= image_tag "rails.png" %>
+      </div>
+      <p><%= t("surveys.index.description_part_1") %></p>
+      <!-- <div class="org-edit">
+        <a href="#" class="edit"></a>
+      </div> -->
+    </div>
+    <div class="Survey-summary">
+      <table>
+        <tbody>
+          <tr>
+            <td><span><%= @decorated_organizations.count %></span></td>
+            <td><span><!-- 17 --></span></td>
+          </tr>
+          <tr>
+            <td><%= t(".active") %></td>
+            <td><%# Inactive %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="survey-create">
+        <span class="left">Organizations</span>
+        <%= link_to t(" ") ,register_path  , :class =>  "addIcon" %>
+      </div>
+    </div>
+    <!-- <div class="Users-summary">
+      <table>
+        <tbody>
+          <tr>
+            <td><span>168</span></td>
+          </tr>
+          <tr>
+            <td>Users</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="user-create">
+        <span class="left">Users</span>
+        <a href="#" class="addIcon"></a>
+      </div>
+    </div> -->
+    <!-- <div class="SpaceWrapper">
+      Utilised space : 1.6gb
+      <div class="spaceBar">
+        <div class="utilisedSpace">
+        </div>
+      </div>
+    </div> -->
+    <div class="clear"></div>
+  </div>
+  <div class="main-content">
+    <header>
+      <h2 class="left">All Organizations
+        <span class="subHeading">Total Organizations:
+          <%= @decorated_organizations.count %></span>
+      </h2>
+      <%= link_to t("Register Organization") ,register_path  , :class => "Btn colrBtn right" %>
+    </header>
+     <%# will_paginate @decorated_organizations  ,:page_links => false %>
+    <table class="table_list">
+      <thead>
+        <tr>
+          <th width="40%" class="rightBorder">Title
+          </th>
+          <th width="35%" class="rightBorder">Space Used</th>
+          <th width="15%" class="rightBorder">Surveys</th>
+          <th width="8%" class="rightBorder">Responses</th>
+          <th width="3%" class="rightBorder">Users</th>
+        </tr>
+        <tbody>
+          <% @decorated_organizations.each do |organization| %>
+            <tr>
+              <td align="left" >
+                <span  data-organization-id="<%= organization.id %>" class="survey_name" ><%= organization.name %></span>
+                <!-- <span class="org_name">Organization Name</span> -->
+              </td>
+              <!-- <td align="left">
+                <%= organization.about %>
+              The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The
+            </td> -->
+              <td align="left"><%= organization.asset_space_in_words %></td>
+              <td align="left"><%= organization.survey_count %></td>
+              <td align="left"><%= organization.response_count %></td>
+              <td align="left"><%= organization.user_count %></a></td>
+          </tr>
+        <% end %>
+        <!--  <tr>
+           <td align="left">
+             <span class="survey_name">Temperature details as per city</span>
+             <span class="org_name">Organization Name</span>
+           </td>
+           <td align="left">
+             The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The
+           </td>
+           <td align="center">209</td>
+           <td align="center">20</td>
+           <td align="center"><a href="#" class="reports-link"></a></td>
+           <td align="left">30 Sep - 31 Nov</td>
+         </tr>
+         <tr>
+           <td align="left">
+             <span class="survey_name">Temperature details as per city</span>
+             <span class="org_name">Organization Name</span>
+           </td>
+           <td align="left">
+             The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The
+           </td>
+           <td align="center">209</td>
+           <td align="center">20</td>
+           <td align="center"><a href="#" class="reports-link"></a></td>
+           <td align="left">30 Sep - 31 Nov</td>
+         </tr> -->
+      </tbody>
+    </table>
+  </div>
+  <div class="clear"></div>
+</div>
+<!--  <header>
+   <h2>
+     <%= t(".heading") %>
+   </h2>
+ </header> -->
+<!-- <ul class="organizations-dashboard">
+    <% @decorated_organizations.each do |organization| %>
+      <li class="organizations-dashboard-organization" data-organization-id="<%= organization.id %>">
+        <div class="organizations-dashboard-organization-name">
+          <h2><%= organization.name %></h2>
+        </div>
+        <span class="organizations-dashboard-organization-surveys">
+          <span class="count"><%= organization.survey_count %></span>
+          <p class="label"><%= Survey.model_name.human.pluralize(organization.survey_count) %></p>
+        </span>
+        <span class="organizations-dashboard-organization-responses">
+          <span class="count"><%= organization.response_count %></span>
+          <p class="label"><%= Response.model_name.human.pluralize(organization.response_count) %></p>
+        </span>
+        <span class="organizations-dashboard-organization-users">
+          <span class="count"><%= organization.user_count %></span>
+          <p class="label"><%= t("activerecord.models.user").pluralize(organization.user_count) %></p>
+        </span>
+      </li>
+    <% end %>
+  </ul> -->
+<script type="text/javascript">
+  $('span.survey_name').click(function(){
+    window.location = Routes.dashboard_path({id: $(this).data('organization-id')});
+  })
+</script>

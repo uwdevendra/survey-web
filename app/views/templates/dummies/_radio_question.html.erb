@@ -1,0 +1,73 @@
+<surveyquestion class="question-row" style="display:block;" id="{{id}}">
+  <span class="question-container">
+    <div class="questionWrp">
+      <span>{{question_number}})</span>
+      <abbr name="mandatory" title="required" style="display:none">
+        *
+      </abbr>
+      <!-- {{#identifier}}
+  <span class="identifier_icon">bookmarked</span>
+  {{/identifier}} -->
+      <!-- <label><%= t("surveys.build.question_title") %></label> -->
+      <input type="text" name="content" value="{{content}}"/>
+    </div>
+    {{#finalized}}
+    <%= render "templates/dummies/finalized_icon" %>
+    {{/finalized}}
+
+{{^finalized}}
+    <span class="form-top-right-actions">
+      <a href="javascript:void(0)" class="delete_question">
+        <!-- delete -->
+      </a>
+      <a href="{{duplicate_url}}" class="copy_question" data-method="post"></a>
+      <!-- <a href="javascript:void(0)" class="copy_question_hidden right" >Copy</a> -->
+      <div class="ref_img">
+        <%= render "templates/questions/file_upload" %>
+      </div>
+      <div class="settingOptionsWrp">
+        <a href="#" class="setting"><img src="/assets/settings.svg"></a>
+        <div class="setting-options">
+          <%= render "templates/questions/identifier" %>
+          <%= render "templates/questions/private" %>
+          <div class="checkbox">
+            {{#mandatory}}
+            <input type="checkbox" name="mandatory" value="{{mandatory}}" checked id="mandatory{{id}}" class="regular-checkbox" />
+            {{/mandatory}}
+  {{^mandatory}}
+            <input type="checkbox" name="mandatory" value="{{mandatory}}" id="mandatory{{id}}" class="regular-checkbox"/>
+            {{/mandatory}}
+            <label for="mandatory{{id}}"></label>
+            <span><%= t("activerecord.attributes.question.mandatory") %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </span>
+    {{/finalized}}
+  </span>
+  <div class="children-content">
+    <div class="inline_errors">{{errors}}</div>
+    <img src="{{image.thumb.url}}" class="thumb" />
+    <%= render "templates/questions/question_finalized_message" %>
+    <%#= render "templates/questions/identifier" %>
+    <%#= render "templates/questions/private" %>
+    {{#id}}
+    <%#= render "templates/questions/file_upload" %>
+    <div class="add_option">
+      <%# link_to  t("add_option"), :class => "add_option" %>
+      <!-- <a href="#" class="add_options_in_bulk"> Add option </a> -->
+    </div>
+    <div class="add_options_in_bulk_wrp">
+      <textarea class="add_options_in_bulk" placeholder="<%= t('surveys.build.add_options_in_bulk_help_text') %>"></textarea>
+      <div class="add_options_in_bulk">
+        <%# button_tag t("surveys.build.add_options_in_bulk_label"), :class => "add_options_in_bulk" %>
+        <a href="#" class="add_options_in_bulk Btn colrBtn">
+          Add</a>
+      </div>
+    </div>
+    {{/id}}
+    {{^id}}
+    <%= render 'templates/loading' %>
+    {{/id}}
+  </div>

@@ -1,0 +1,24 @@
+<div class="container">
+<header>
+  <h2><%= t(".user_responses_dashboard_heading") %></h2>
+</header>
+
+<table class="responses-dashboard-table">
+  <thead>
+    <th><%= t(".date_table_heading") %></th>
+    <th><%= t(".incomplete_table_heading") %></th>
+    <th><%= t(".complete_table_heading") %></th>
+  </thead>
+  <tbody>
+
+  <% @survey.reporter.response_counts_for(@user_id).each_in_reverse_chronological_order do |count| %>
+    <tr>
+      <td><%= count.month %></td>
+      <td><%= count.incompletes %></td>
+      <td><%= count.completes %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<div class="clear"></div>
+</div>

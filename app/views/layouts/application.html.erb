@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= airbrake_javascript_notifier %>
+    <title><%= t(:application_title) %></title>
+    <%= include_gon %>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400' rel='stylesheet' type='text/css'>
+  </head>
+  <body<%= yield :body_attributes %>>
+    <div id="page">
+      <%# render "layouts/banner" unless @public_response %>
+      <%= render "layouts/header", :status => controller_name unless @public_response  %>
+      <%= yield :status_bar unless @public_response %>
+      <!-- <div id="content" role="content"> -->
+      <%= render "layouts/flash", :flash => flash %>
+      <!-- <div  role="content" class="container"> -->
+      <%= yield %>
+      <!-- </div> -->
+      <% unless Rails.env.production? %>
+        <div id='footnotes_holder'></div>
+      <% end %>
+      <!-- </div> -->
+      <%= render "layouts/footer" %>
+    </div>
+    <script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
+    <script>
+      $(document).ready(function() {
+          //Current language active
+          var languageName = location.pathname.split("/")[1] ;
+          if( languageName.length > 0 && languageName.length < 3) {
+              $('#current_lang a').text(languageName);
+              $('.langWrp a[data_id^="' + languageName + '"]').addClass('active');
+             }
+             else{
+              $('#current_lang a').text("En");
+              $('a[data_id="en"]').addClass('active');
+          }
+          $('.flash').css({'left': ($(window).width() - 400)/2});
+          //survey action row hide-show
+          $(function() {
+            $('input[type=radio]').on('change',function() {
+              $('div.survey-actions').hide();
+              $('.survey-row').css({'box-shadow':'0px 0px 0px #000',
+                '-webkit-box-shadow':'0px 0px 0px #000' , '-moz-box-shadow':'0px 0px 0px #000'});
+      
+                if($(this).is(':checked')) {
+                      $('div.survey-actions').eq( $('input[type=radio]').index( this ) ).show();
+                      $(this).parents('.survey-row').css({'box-shadow':'-1px 5px 25px rgba(0, 0, 0, 0.5)' ,
+                        '-webkit-box-shadow':'-1px 5px 25px rgba(0, 0, 0, 0.5)' ,
+                        '-moz-box-shadow':'-1px 5px 25px rgba(0, 0, 0, 0.5)'});
+                }
+            });
+          });
+      
+      
+          //////////////////////////////////////////////////////////////////////////////////
+           //blue tabs script start
+        $('.blue_tabs .tab-links a').on('click', function(e)  {
+          //var currentAttrValue = $(this).attr('href');
+          //$('.tabContainer').hide();
+          //$('.tabContainer' + currentAttrValue).show();
+          //$(this).parent('li').addClass('active').siblings().removeClass('active');
+          //e.preventDefault();
+          //pagination
+          $("#table1").tablesorter({widthFixed: true,widgets: ['zebra', 'pager'],widgetOptions: {pager_selectors: {container   : '#pager1'}}})
+          $("#table2").tablesorter({widthFixed: true,widgets: ['zebra', 'pager'],widgetOptions: {pager_selectors: {container   : '#pager2'}}})
+          $("#table3").tablesorter({widthFixed: true,widgets: ['zebra', 'pager'],widgetOptions: {pager_selectors: {container   : '#pager3'}}})
+          $("#table4").tablesorter({widthFixed: true,widgets: ['zebra', 'pager'],widgetOptions: {pager_selectors: {container   : '#pager4'}}})
+          $("#table5").tablesorter({widthFixed: true,widgets: ['zebra', 'pager'],widgetOptions: {pager_selectors: {container   : '#pager5'}}})
+        });
+      
+      new SurveyApp.LanguageSelection($("#language_selection"));
+      new SurveyApp.UserOptions($("#welcome")) ;
+      
+      if ($("#flash_container").length ){
+        new SurveyApp.FlashHash($("#flash_container"))
+        // console.log($("#flash_container").length);
+      }
+
+      // $('.add-question-btn').click(function(){
+      //   $('.question-types').toggleClass('show');
+      //   return false;
+      // });
+
+
+      // $('.add-question-btn').click(function(){
+      //   $(this).toggleClass('minusImg');
+      //   $(this).prev('.question-types').toggleClass('show');
+      //   return false;
+      // });
+
+      // $('.add-option').click(function(){
+      //   $(this).toggleClass('minusImg');        
+      //   return false;
+      // });
+
+      $('.add-question-btn').click(function(){
+        $(this).prev('.question-types').toggleClass('show');
+        return false;
+      });
+      $('.addBtn').click(function(){
+        $('.question-types').removeClass('show');
+      });
+
+      // $('.addBtn').click(function(){
+      //   $('.question-types').removeClass('show');
+      // });
+
+  $(document).click(function (q)
+    {
+      var container04 = $("#welcome");
+      if (!container04.is(q.target) // if the target of the click isn't the container...
+            && container04.has(q.target).length === 0) // ... nor a descendant of the container
+        {
+          $('.profilePopUp').hide();
+        }
+    });
+          //////////////////////////////////////////////////////////////////////////////////
+      });
+    </script>
+  </body>
+</html>

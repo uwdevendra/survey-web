@@ -1,0 +1,60 @@
+<surveyquestion id="{{id}}" class="arati">
+<span class="question-row">
+  <%= render "templates/dummies/finalized_icon" %>
+  
+  <span class="question-container">
+  <span>{{question_number}})</span>
+  <label>
+    {{content}}
+    <abbr name="mandatory" title="required" style="display:none">
+      *
+    </abbr>
+  </label>
+  {{#identifier}}
+  <span class="identifier_icon">bookmarked</span>
+  {{/identifier}}
+  <label><%= t("surveys.build.question_title") %>
+  </label>
+  <input type="text" name="content" value="{{content}}"/>
+
+  <a href="javascript:void(0)" class="delete_question">delete</a>
+  <a href="javascript:void(0)" class="copy_question" >Copy</a>
+  <a href="{{duplicate_url}}" class="copy_question_hidden" data-method="post">Copy</a>
+  <div class="inline_errors">{{errors}}</div>
+  <img src="{{image.thumb.url}}" class="thumb" />
+  </span>
+
+
+  <div class="checkbox">
+    {{#mandatory}}
+    <input type="checkbox" name="mandatory" value="{{mandatory}}" checked id="mandatory{{id}}" class="regular-checkbox" />
+    {{/mandatory}}
+  {{^mandatory}}
+    <input type="checkbox" name="mandatory" value="{{mandatory}}" id="mandatory{{id}}" class="regular-checkbox"/>
+    {{/mandatory}}
+    <label for="mandatory{{id}}"></label>
+    <span><%= t("activerecord.attributes.question.mandatory") %>
+    </span>
+  </div>
+  <div>
+    <label><%= t("activerecord.attributes.question.max_length") %>
+    </label>
+    <input type="number" name="max_length" value="{{max_length}}"/>
+  </div>
+  <%= render "templates/questions/question_finalized_message" %>
+  <%= render "templates/questions/identifier" %>
+  <%= render "templates/questions/private" %>
+  <%= render "templates/questions/file_upload" %>
+
+
+{{#id}}
+  <div>
+    <%= button_tag t("add_option"), :class => "add_option" %>
+  </div>
+  <textarea class="add_options_in_bulk" placeholder="<%= t('surveys.build.add_options_in_bulk_help_text') %>"></textarea>
+  <div class="add_options_in_bulk"><%= button_tag t("surveys.build.add_options_in_bulk_label"), :class => "add_options_in_bulk" %></div>
+{{/id}}
+{{^id}}
+  <%= render 'templates/loading' %>
+{{/id}}
+</span>

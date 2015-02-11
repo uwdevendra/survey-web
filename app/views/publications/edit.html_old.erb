@@ -1,0 +1,254 @@
+<%= content_for :body_attributes do %>
+  id="publish"<% end %>
+<div class="container">
+  <header id="backBtnContainer">
+    <h2 class="left">
+      <a class="backBtn" id="backBtn"></a>
+      <span><%= t ".publish_survey" %></span>
+    </h2>
+  </header>
+  <div id="publish_survey">
+    <%= semantic_form_for @survey, :url => survey_publication_path(@survey.id), :method => :put do |f| %>
+      <div class="survey_publish_heading">
+        <h5 class="left">Temperature details as per city</h5>
+        <div class="survey_expiryDate">
+          <!-- Expires on - 2014-08-31 -->
+          <%= f.input :expiry_date, :as => :flexible_text, :required => true, :input_html => { :value => @survey.expiry_date, :class => 'expiry-date' } %>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="select-crowsource">
+        <%= f.input :public, :as => :custom_boolean, :label => "Crowd source", :input_html => { :class => "crowd-source-toggle", :checked => @survey.public } %>
+        <div class="thank-you-message">
+          <%= f.input :thank_you_message, :as => :custom_text, :label => false, :input_html => { :value => @survey.thank_you_message } %>
+        </div>
+        <!-- <input type="checkbox" id="check-crowdSource" class="regular-checkbox" /> -->
+        <!-- <label for="check-crowdSource"></label> -->
+        <%# f.check_box :public, :class => "regular-checkbox crowd-source-toggle" , :id => "survey_public" , :input_html => { :value => @survey.public } %>
+        <%# label_tag 'survey_public', "", :class => 'organization-legal-item-label' %>
+        <!-- <span>Crowd source</span>
+      <div class="clear"></div>
+      <div class="thank-you-message">
+      <textarea name="Thank you message" rows="2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus dolor quis libero hendrerit fringilla.Sed neque quam, imperdiet vel diam at, viverra tincidunt erat.
+      </textarea>
+      </div> -->
+        <div class="clear"></div>
+      </div>
+      <!--    <ol>      
+      <%= f.input :public, :as => :boolean, :label => "Crowd source", :input_html => { :class => "crowd-source-toggle", :checked => @survey.public } %>
+      <div class="thank-you-message">
+        <%= f.input :thank_you_message, :as => :text, :label => "Thank you message", :input_html => { :value => @survey.thank_you_message } %>
+      </div>
+    </ol> -->
+      <div class="publish-to-users">
+        <% if @published_users.present? %>
+          <div class="publish-to-heading">
+            <h4><%= t ".survey_users" %></h4>
+            <div id="pager1" class="pager">
+              <h5 class="left"><%= t ".published_to_users" %></h5>
+              <form>
+                <select class="pagesize">
+                  <option selected="selected"  value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option  value="40">40</option>
+                </select>
+                <input type="text" value="1-10 of 14" class="pagedisplay"/>
+                <%= image_tag "prev.svg" , class: "prev"  %>
+                <%= image_tag "next.svg" , class: "next"  %>
+              </form>
+            </div>
+          </div>
+          <div class="list-of-published-users">
+            <ol class="published">
+              <!-- <table cellspacing="10" class="user-list tablesorter published" id="table1">
+            <tbody>
+              <tr class="published"> -->
+              <% @published_users.each_with_index do |user , index| %>
+                <li>
+                  <!-- <td width="33.333%"> --><%= user.name %><!-- </td> -->
+                  <%# if (index + 1) % 3  == 0  %>
+                  <!-- </tr><tr class="published"> -->
+                  <%# end %>
+                </li>
+              <% end %>
+            </ol>
+            <div class="clear"></div>
+          </div>
+          <!-- </tr>
+                          </tbody>
+                        </table> -->
+        <% end %>
+        <% if @unpublished_users.empty? %>
+          <div class="publish-to-heading">
+            <div class="left">
+              <h5><%= t ".Choose users to publish to" %></h5>
+            </div>
+          </div>
+          <fieldset>
+            <legend>Choose users to publish to:</legend>
+            There are no users you can publish to. Sorry.
+          </fieldset>
+        <% else %>
+          <div class="publish-to-heading">
+            <div id="pager1" class="pager">
+              <h5 class="left">Choose users to publish to</h5>
+              <form>
+                <select class="pagesize">
+                  <option selected="selected"  value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option  value="40">40</option>
+                </select>
+                <input type="text" value="1-10 of 14" class="pagedisplay"/>
+                <%= image_tag "prev.svg" , class: "prev"  %>
+                <%= image_tag "next.svg" , class: "next"  %>
+              </form>
+            </div>
+          </div>
+          <%= f.input :user_ids, :as => :custom_check_boxes, :collection => @unpublished_users, :member_label => Proc.new { |user| user.name }, :label => "Choose users to publish to:"%>
+          <!-- ################################################################## -->
+          <!-- <%= f.input :user_ids, :as => :check_boxes, :collection => @unpublished_users,:value_as_class => true, :member_label => Proc.new { |user| user.name }, :label => "Choose users to publish to:",:input_html => { :class => "regular-checkbox" } %>  -->
+          <!-- <%= @unpublished_users.each do |user| %>
+           <%= puts user.inspect %>
+           <% end %> -->
+          <!-- ################################################################## -->
+          <!-- <table cellspacing="10" class="user-list tablesorter published" id="table2">
+            <tbody>
+              <tr class=""> -->
+          <div class="list-of-users-to-publish">
+            <ol class="users-to-publish">
+              <% @unpublished_users.each_with_index do |user , index| %>
+                <li>
+                  <%# f.check_box :public, :class => "regular-checkbox" , :input_html => { :value => @survey.public } %>
+                  <%# f.check_box :user_ids ,  :class => "regular-checkbox"  %>
+                  <!-- <td width="33.333%"> --><%= user.name %><!-- </td> -->
+                  <%# if (index + 1) % 3  == 0  %>
+                  <!-- </tr><tr class="published"> -->
+                  <%# end %>
+                </li>
+              <% end %>
+            </ol>
+            <div class="clear"></div>
+          </div>
+          <!-- </tr>
+                          </tbody>
+                        </table> -->
+        <% end %>
+      </div>
+      <div class="share-with-check">
+        <input type="checkbox" name="share-with-organizations" id="share-with-organizations" class="regular-checkbox">
+        <label for="share-with-organizations"></label>
+        <span>Share with an organization</span>
+        <div class="clear"></div>
+      </div>
+      <% if @survey.organization_id == current_user_org %>
+        <div class="share-with-organizations">
+          <!-- <h3>Share with an Organization</h3> -->
+          <% if @shared_organizations.present? %>
+            <div class="share-with-heading">
+              <div id="pager3" class="pager">
+                <h5 class="left">Shared with:</h5>
+                <form>
+                  <select class="pagesize">
+                    <option selected="selected"  value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option  value="40">40</option>
+                  </select>
+                  <input type="text" value="1-10 of 14" class="pagedisplay"/>
+                  <%= image_tag "prev.svg" , class: "prev"  %>
+                  <%= image_tag "next.svg" , class: "next"  %>
+                </form>
+              </div>
+            </div>
+            <!-- <fieldset> -->
+            <!-- <legend>Shared with:</legend> -->
+            <!-- <table cellspacing="10" class="user-list tablesorter published" id="table3">
+            <tbody>
+              <tr class=""> -->
+            <div class="list-of-shared-organizations">
+              <ol class="shared-organizations">
+                <% @shared_organizations.each_with_index do |org , index| %>
+                  <li>
+                    <!-- <td width="33.333%"> --><%= org.name %><!-- </td> -->
+                    <%# if (index + 1) % 3  == 0  %>
+                    <!-- </tr><tr class="published"> -->
+                    <%# end %>
+                  </li>
+                <% end %>
+              </ol>
+              <div class="clear"></div>
+            </div>
+            <!-- </tr>
+                          </tbody>
+                        </table> -->
+            <!-- <ol class="published">
+                <% @shared_organizations.each do |org| %>
+                  <li>
+                    <%= org.name %>
+                  </li>
+                <% end %>
+              </ol> -->
+            <!-- </fieldset> -->
+          <% end %>
+          <% if @unshared_organizations.empty? %>
+            <fieldset>
+              <legend>Choose organizations to share with:</legend>
+              There are no organizations you can share with. Sorry.
+            </fieldset>
+          <% else %>
+            <div class="share-with-heading">
+              <div id="pager4" class="pager">
+                <h5 class="left">Choose organizations to share with:</h5>
+                <form>
+                  <select class="pagesize">
+                    <option selected="selected"  value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option  value="40">40</option>
+                  </select>
+                  <input type="text" value="1-10 of 14" class="pagedisplay"/>
+                  <%= image_tag "prev.svg" , class: "prev"  %>
+                  <%= image_tag "next.svg" , class: "next"  %>
+                </form>
+              </div>
+            </div>
+            <!-- <fieldset> -->
+            <!-- <legend>Shared with:</legend> -->
+            <!-- <table cellspacing="10" class="user-list tablesorter published" id="table4">
+              <tbody>
+                <tr class=""> -->
+            <div class="list-of-organizations-to-share-with">
+              <ol class="organizations-to-share-with">
+                <% @unshared_organizations.each_with_index do |org , index| %>
+                  <li>
+                    <!-- <td> --><%= org.name %><!-- </td> -->
+                    <%# if (index + 1) % 3  == 0  %>
+                    <!-- </tr><tr class="published"> -->
+                    <%# end %>
+                  </li>
+                <% end %>
+              </ol>
+              <div class="clear"></div>
+            </div>
+            <!-- </tr>
+                              </tbody>
+                            </table> -->
+            <!--  <ol>
+             <%= f.input :participating_organization_ids, :as => :check_boxes, :collection => @unshared_organizations, :member_label => Proc.new { |org| org.name }, :label => "Choose organizations to share with:" %>
+           </ol> -->
+          <% end %>
+        </div>
+      <% end %>
+      <%= f.actions do %>
+      <%= f.action :submit, :as => :button , :label => t('.publish_survey')%>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    new SurveyApp.SurveyPublisher($("#publish_survey"));
+  });
+</script>

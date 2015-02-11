@@ -1,0 +1,133 @@
+<script src='https://www.google.com/jsapi'></script>
+<div class="dashboard-wrapper">
+  <div class="left-sideBar">
+    <div class="org-shortInfo">
+     <!--  <p>Welcome to the Survey Application</p> -->
+      <h1>
+        <%=  @decorated_organization.name %>
+      </h1>
+      <div class="org-dashboard-logo">
+        <%= image_tag @decorated_organization.organization_logo_url %>
+      </div>
+      <p>
+        <%= @decorated_organization.organization_about %>
+      </p>
+      <div class="org-edit">
+        <%= link_to " ",  current_user_org_path  , :class => "edit" %>
+        <!-- <a href="#" class="edit"></a> -->
+      </div>
+    </div>
+    <div class="Survey-summary">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <span>
+                <!-- just showing survey count for time being -->
+                <%= @decorated_organization.survey_count %>
+              </span>
+            </td>
+            <td><span><!-- 17 --></span></td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td><%# t(".expiring_soon") %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="survey-create">
+        <span class="left">
+          <%= link_to t(".surveys"), surveys_path %>
+        </span>
+        <!-- <a href="#" class="addIcon">
+          
+        </a> -->
+        <!-- <% if can? :create, Survey %>
+            <%= link_to surveys_path, :class => "apps addIcon" do %>
+              <span>
+                <%= t("header.create_survey") %>
+              </span>
+            <% end %>
+        <% end %> -->
+        <% if can? :create, Survey %>
+          <%= link_to " ", surveys_path, :method => :post, :class => "addIcon" %>
+        <% else  %>
+        <a href="#" style="height: 20px;"></a>
+        <% end %>
+      </div>
+    </div>
+    <div class="Users-summary">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <span>
+                <%= @decorated_organization.user_count %>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t(".users") %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="user-create">
+        <span class="left">
+          <% if signed_in_as_cso_admin? %>
+            <%= link_to t("users"), all_user_path %>
+          <% else  %>
+            <%= t("users") %>
+          <% end %>
+        </span>
+        <% if signed_in_as_cso_admin? %>
+          <%= link_to " ", new_user_path, :class => 'addIcon'%>
+        <% else  %>
+        <a href="#" style="height:20px;"></a>
+        <% end %>
+        <!-- <a href="#" class="addIcon"></a> -->
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="main-content">
+    <header>
+      <h2 class="left">Top Surveys
+        <span class="subHeading">Total surveys:
+          <%= @decorated_organization.survey_count %></span>
+      </h2>
+      <%= link_to t(".all_surveys"), surveys_path , :class => "Btn colrBtn right" %>
+      <!-- <a href="#" class="Btn colrBtn right">all surveys</a> -->
+    </header>
+    <%# render "organization_dashboards/top_surveys" %>
+    <table class="table_list">
+      <thead>
+        <tr>
+          <th width="20%" class="rightBorder"><%= t ".title" %></th>
+          <th width="35%" class="rightBorder"><%= t ".description" %></th>
+          <th width="15%" class="rightBorder"><%= t ".responses" %></th>
+          <!-- <th width="8%" class="rightBorder"><%# t ".users" %></th> -->
+          <th width="3%" class="rightBorder"><%= t ".reports" %></th>
+          <%# t ".overview" %>
+          <%# t ".status" %>
+          <th width="20%"><%= t ".end_date" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render :partial => "organization_dashboards/top_surveys", :locals => { :top_surveys => @top_surveys } %>
+      </tbody>
+    </table>
+  </div>
+  <div class="clear"></div>
+  <!-- <div class="organization-dashboard-graphs">
+    <div class="organization-dashboard-graphs-item" id="organization-dashboard-graphs-survey">
+      <%= render_chart @decorated_organization.surveys_per_month_graph, 'organization-dashboard-graphs-survey' %>
+    </div>
+    <div class="organization-dashboard-graphs-item" id="organization-dashboard-graphs-response">
+      <%= render_chart @decorated_organization.responses_per_month_graph, 'organization-dashboard-graphs-response' %>
+    </div>
+  </div> -->
+</div>
+    <%# will_paginate @top_surveys  ,:page_links => false %>
+

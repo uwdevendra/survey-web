@@ -1,0 +1,86 @@
+<surveyquestion class="question-row" id="{{id}}">
+  
+  <span class="question-container">
+  
+  <div class="questionWrp">
+    <span>
+      {{question_number}})
+    </span>
+    <input type="text" name="content" value="{{content}}"/>
+    <abbr name="mandatory" title="required" style="display:none">
+      *
+    </abbr>
+    <!-- <label>
+      {{content}}
+      
+    </label> -->
+    <!-- {{#identifier}}<span class="identifier_icon">bookmarked</span>{{/identifier}} -->
+    <!-- <input type="text" disabled="true" /> -->
+  </div>
+
+  {{#finalized}}
+  <%= render "templates/dummies/finalized_icon" %>
+  {{/finalized}}
+
+{{^finalized}}
+<span class="form-top-right-actions">
+  <a href="javascript:void(0)" class="delete_question">
+    <!-- delete -->
+  </a>
+  <a href="{{duplicate_url}}" class="copy_question" data-method="post"></a>
+  <!-- <a href="javascript:void(0)" class="copy_question_hidden right" >Copy</a> -->
+  <div class="ref_img">
+  <%= render "templates/questions/file_upload" %>
+  </div>
+
+  <div class="settingOptionsWrp">
+    <a href="#" class="setting"><img src="/assets/settings.svg"></a>
+
+    <div class="setting-options">
+      
+      <%= render "templates/questions/identifier" %>
+      <%= render "templates/questions/private" %>
+      
+      <div class="checkbox">
+    {{#mandatory}}
+    <input type="checkbox" name="mandatory" value="{{mandatory}}" checked id="mandatory{{id}}" class="regular-checkbox" />
+    {{/mandatory}}
+  {{^mandatory}}
+    <input type="checkbox" name="mandatory" value="{{mandatory}}" id="mandatory{{id}}" class="regular-checkbox"/>
+    {{/mandatory}}
+    <label for="mandatory{{id}}"></label>
+    <span><%= t("activerecord.attributes.question.mandatory") %>
+    </span>
+  </div>
+    </div>
+
+  </div>
+</span>
+{{/finalized}}
+  </span>
+
+  <div class="children-content">
+
+  <div class="inline_errors">
+    {{errors}}
+  </div>
+  <img src="{{image.thumb.url}}" class="thumb" />
+  <div>
+    <!--     <label><%= t("surveys.build.question_title") %>
+    </label> -->
+    <!-- <input type="text" name="content" value="{{content}}"/> -->
+  </div>
+  
+
+  <div class="no-of-characters">
+    <label><%= t("activerecord.attributes.question.max_length") %>
+    </label>
+    <input type="number" name="max_length" value="{{max_length}}"/>
+  </div>
+
+  <%= render "templates/questions/question_finalized_message" %>
+  
+  
+  </div>
+  
+

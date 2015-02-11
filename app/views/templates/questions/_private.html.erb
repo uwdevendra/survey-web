@@ -1,0 +1,10 @@
+<div class="checkbox">
+  {{#private}}
+  <input type="checkbox" name="private" value="{{private}}" checked id="private{{id}}" class="regular-checkbox"></input>
+  {{/private}}
+  {{^private}}
+  <input type="checkbox" name="private" value="{{private}}" id="private{{id}}" class="regular-checkbox"></input>
+  {{/private}}
+  <label for="private{{id}}"></label>
+  <span><%= t "surveys.build.mark_private" %></span>
+</div>

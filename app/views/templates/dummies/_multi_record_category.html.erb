@@ -1,0 +1,146 @@
+<surveyquestion class="question-row" id="{{id}}">
+
+  <span class="question-container">
+  <div class="questionWrp"> 
+  <!-- <div class="collapse_category">&#9660;</div> -->
+  
+  <span>{{question_number}})</span>
+ <!--  <label>
+    {{content}} -->
+    <abbr name="mandatory" title="required" style="display:none">
+      *
+    </abbr>
+  <!-- </label> -->
+  
+    <!-- <label><%= t("surveys.build.multi_record_title") %></label> -->
+    <input type="text" name="content" value="{{content}}"/>
+ 
+  </div>
+
+{{#finalized}}
+  <%= render "templates/dummies/finalized_icon" %>
+  {{/finalized}}
+
+{{^finalized}}
+<span class="form-top-right-actions">
+  <a href="javascript:void(0)" class="delete_question">
+    <!-- delete -->
+  </a>
+  <a href="{{duplicate_url}}" class="copy_question" data-method="post"></a>
+  <!-- <a href="javascript:void(0)" class="copy_question_hidden right" >Copy</a> -->
+  <div class="ref_img">
+  <%= render "templates/questions/file_upload" %>
+  </div>
+
+  <div class="settingOptionsWrp">
+    <a href="#" class="setting"><img src="/assets/settings.svg"></a>
+
+    <div class="setting-options">
+      
+      <%= render "templates/questions/identifier" %>
+      <%= render "templates/questions/private" %>
+      
+      <div class="checkbox">
+    {{#mandatory}}
+    <input type="checkbox" name="mandatory" value="{{mandatory}}" checked id="mandatory{{id}}" class="regular-checkbox" />
+    {{/mandatory}}
+  {{^mandatory}}
+    <input type="checkbox" name="mandatory" value="{{mandatory}}" id="mandatory{{id}}" class="regular-checkbox"/>
+    {{/mandatory}}
+    <label for="mandatory{{id}}"></label>
+    <span><%= t("activerecord.attributes.question.mandatory") %>
+    </span>
+  </div>
+    </div>
+
+  </div>
+</span>
+{{/finalized}}
+  </span>
+
+
+  <div class="children-content">
+  
+  <div class="addQuestion add-subQuestion">
+      <!--add question btn-->
+      <div class="question-types">
+        <ul>
+          <li>
+            <!-- <input type="radio" name="questionType" id="singleLine" class="regular-radio">
+            <label for="singleLine" class=""></label> -->
+            <span><a href="javascript:void(0)" id="SingleLineQuestion" class="clsaddquestion_sub_2">Single Line</a></span>
+          </li>
+          <li>
+            <!-- <input type="radio" name="questionType" id="numeric" class="regular-radio ">
+            <label for="numeric" class=""></label> -->
+            <span><a href="javascript:void(0)" id="NumericQuestion" class="clsaddquestion_sub_2">Numeric</a></span>
+          </li>
+          <li>
+            <!-- <input type="radio" name="questionType" id="multiline" class="regular-radio">
+            <label for="multiline" class=""></label> -->
+            <span><a href="javascript:void(0)" id="MultilineQuestion" class="clsaddquestion_sub_2">Multiline</a></span>
+          </li>
+          <li>
+            <!-- <input type="radio" name="questionType" id="date" class="regular-radio">
+            <label for="date" class=""></label> -->
+            <span><a href="javascript:void(0)" id="DateQuestion" class="clsaddquestion_sub_2">Date</a></span>
+          </li>
+          <li>
+            <!-- <input type="radio" name="questionType" id="multichoice" class="regular-radio">
+            <label for="multichoice" class=""></label> -->
+            <span><a href="javascript:void(0)" id="MultiChoiceQuestion" class="clsaddquestion_sub_2">Multichoice</a></span>
+          </li>
+          <!-- <li>
+            <input type="radio" name="questionType" id="category" class="regular-radio">
+            <label for="category" class=""></label>
+            <span><a href="javascript:void(0)" id="CategoryQuestion" class="clsaddquestion_sub_2">Category</a></span>
+          </li> -->
+          <li>
+            <!-- <input type="radio" name="questionType" id="rating" class="regular-radio">
+            <label for="rating" class=""></label> -->
+            <span><a href="javascript:void(0)" id="RatingQuestion" class="clsaddquestion_sub_2">Rating</a></span>
+          </li>
+          <!-- <li>
+            <input type="radio" name="questionType" id="multiRecord" class="regular-radio">
+            <label for="multiRecord" class=""></label>
+            <span><a href="javascript:void(0)" id="MultiRecordCategory" class="clsaddquestion_sub_2">Multirecord</a></span>
+          </li> -->
+          <li>
+            <!-- <input type="radio" name="questionType" id="radio" class="regular-radio">
+            <label for="radio" class=""></label> -->
+            <span><a href="javascript:void(0)" id="RadioQuestion" class="clsaddquestion_sub_2">Radio</a></span>
+          </li>
+          <li>
+            <!-- <input type="radio" name="questionType" id="photo" class="regular-radio">
+            <label for="photo" class=""></label> -->
+            <span><a href="javascript:void(0)" id="PhotoQuestion" class="clsaddquestion_sub_2">Photo</a></span>
+          </li>
+          <li>
+            <!-- <input type="radio" name="questionType" id="drodown" class="regular-radio">
+            <label for="drodown" class=""></label> -->
+            <span><a href="javascript:void(0)" id="DropDownQuestion" class="clsaddquestion_sub_2">Dropdown</a></span>
+          </li>
+        </ul>
+        <div class="clear"></div>
+        <button class="addBtn Btn nrmlBtn">Add</button>
+      </div>
+
+      <!-- <a href="#" class="add-question-btn"></a> -->
+      <a class='add_sub_question_2 add-option icon-btns' href='javascript:void(0);'></a> 
+    </div>
+  <div class="inline_errors">{{errors}}</div>
+  {{#id}}
+  <!-- <div>
+    <%#= render 'templates/question_types_dropdown' %>
+    <button class='add_sub_question' href='#'>Add Sub-Question</button>
+  </div> -->
+  <!-- <div>
+    <button class='add_sub_category' href='#'>Add Sub-Category</button>
+  </div> -->
+  {{/id}}
+{{^id}}
+  <%= render 'templates/loading' %>
+  {{/id}}
+  <%= render "templates/questions/category_finalized_message" %>
+  </div>
+

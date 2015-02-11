@@ -1,0 +1,515 @@
+<!-- <div class="container">
+  <%= semantic_form_for @survey do |f| %>
+    <%= f.inputs "Summary" , :id => "summary" do%>
+      <%= f.input :name ,:label => true  , :required => false ,:wrapper_html => { :style => "color:red;" } %>
+      <%= f.input :name , :as => :flexible_text ,:input_html => { :readonly => true } %>
+    <% end %>
+     <%# f.inputs :description,:expiry_date, :name => "More" , :id => "more"  %>
+   <%# f.actions %>
+  <% end %>
+</div> -->
+<!-- <div class="container">
+  <header id="backBtnContainer">
+    <h2 class="left">
+      <a id="backBtn" class="backBtn"></a>
+      <span>Survey  responses</span>
+      <span class="subHeading">Temperature details as per city</span>
+    </h2>
+    <a  class="searchBtn right"></a>
+  </header>
+  <div class="blue_tabs">
+    <ul class="filters tab-links">
+      <li class="active"><a  href="#">Edit</a></li>
+      <li><a  href="#">overview</a></li>
+      <li><a  href="#">responses</a></li>
+      <li><a  href="#">reports</a></li>
+    </ul>
+  </div>
+  <div id="pager1" class="pager">
+    <form>
+      <select class="pagesize">
+        <option selected="selected"  value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option  value="40">40</option>
+      </select>
+      <input type="text" value="1-10 of 14" class="pagedisplay"/>
+      <%= image_tag "prev.svg" , class: "prev"  %>
+      <%= image_tag "next.svg" , class: "next"  %>
+    </form>
+  </div>
+  <div class="survey-list-heading responses-list-heading">
+    <ul>
+      <li class="rightBorder">Question02</li>
+      <li class="rightBorder">Question03</li>
+      <li class="rightBorder">Location</li>
+      <li class="rightBorder">Last update at</li>
+      <li class="rightBorder"><%= t ".users" %></li>
+      <li class="">Agent name</li>
+      <ul>
+        <div class="clear"></div>
+      </div>
+      <div class="survey-row responce-row">
+        <div class="survey-info">
+          <ul>
+            <li class="">
+              <span class="radio-btn-wrapper">
+                <input type="radio" id="response-04" name="surveys" class="regular-radio survey-action-radio" />
+                <label for="response-04"></label>
+              </span>
+              <span class="survery-description">
+                Mumbai</span>
+            </li>
+            <li class="">
+              2014/12/25
+            </li>
+            <li class="">
+              200
+            </li>
+            <li class="">
+              lorem ipsume lorem ipsume
+            </li>
+            <li class="">
+              Pune
+            </li>
+            <li class="">
+              Wed 24 Dec 2014
+            </li>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="survey-actions">
+          <ul class="listOf-survey-actions">
+            <a href="#" class="Btn nrmlBtn inline-btn">Show</a>
+            <a href="#" class="Btn nrmlBtn inline-btn">edit</a>
+            <a href="#" class="Btn nrmlBtn inline-btn">delete</a>
+          </ul>
+        </div>
+      </div>
+      <div class="survey-row responce-row">
+        <div class="survey-info">
+          <ul>
+            <li class="">
+              <span class="radio-btn-wrapper">
+                <input type="radio" id="response-01" name="surveys" class="regular-radio survey-action-radio" />
+                <label for="response-01"></label>
+              </span>
+              <span class="survery-description">
+                Mumbai</span>
+            </li>
+            <li class="">
+              2014/12/25
+            </li>
+            <li class="">
+              200
+            </li>
+            <li class="">
+              lorem ipsume lorem ipsume
+            </li>
+            <li class="">
+              Pune
+            </li>
+            <li class="">
+              Wed 24 Dec 2014
+            </li>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="survey-actions">
+          <ul class="listOf-survey-actions">
+            <a href="#" class="Btn nrmlBtn inline-btn">Show</a>
+            <a href="#" class="Btn nrmlBtn inline-btn">edit</a>
+            <a href="#" class="Btn nrmlBtn inline-btn">delete</a>
+          </ul>
+        </div>
+      </div>
+      <div class="survey-row responce-row">
+        <div class="survey-info">
+          <ul>
+            <li class="">
+              <span class="radio-btn-wrapper">
+                <input type="radio" id="response-02" name="surveys" class="regular-radio survey-action-radio" />
+                <label for="response-02"></label>
+              </span>
+              <span class="survery-description">
+                Mumbai</span>
+            </li>
+            <li class="">
+              2014/12/25
+            </li>
+            <li class="">
+              200
+            </li>
+            <li class="">
+              lorem ipsume lorem ipsume
+            </li>
+            <li class="">
+              Pune
+            </li>
+            <li class="">
+              Wed 24 Dec 2014
+            </li>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="survey-actions">
+          <ul class="listOf-survey-actions">
+            <a href="#" class="Btn nrmlBtn inline-btn">Show</a>
+            <a href="#" class="Btn nrmlBtn inline-btn">edit</a>
+            <a href="#" class="Btn nrmlBtn inline-btn">delete</a>
+          </ul>
+        </div>
+      </div>
+      <div class="survey-row responce-row">
+        <div class="survey-info">
+          <ul>
+            <li class="">
+              <span class="radio-btn-wrapper">
+                <input type="radio" id="response-03" name="surveys" class="regular-radio survey-action-radio" />
+                <label for="response-03"></label>
+              </span>
+              <span class="survery-description">
+                Mumbai</span>
+            </li>
+            <li class="">
+              2014/12/25
+            </li>
+            <li class="">
+              200
+            </li>
+            <li class="">
+              lorem ipsume lorem ipsume
+            </li>
+            <li class="">
+              Pune
+            </li>
+            <li class="">
+              Wed 24 Dec 2014
+            </li>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="survey-actions">
+          <ul class="listOf-survey-actions">
+            <a href="#" class="Btn nrmlBtn inline-btn">Show</a>
+            <a href="#" class="Btn nrmlBtn inline-btn">edit</a>
+            <a href="#" class="Btn nrmlBtn inline-btn">delete</a>
+          </ul>
+        </div>
+      </div>
+    </div>
+ -->
+
+
+<div class="container">
+  <header id="backBtnContainer">
+    <h2 class="left">
+      <a href="#" class="backBtn"></a>
+      <span>
+        <!--<%= t('.list_of_users_heading', :survey_name => @survey.name) %>-->
+        Survey  builder
+        <span class="subHeading">
+          <%= @survey.name %>
+        </span>
+      </span>
+    </h2>
+  </header>
+
+  <div class="blue_tabs">
+    <ul class="tab-links">
+      <li class="active">
+        <%= link_to  t('edit'), survey_build_path(@survey.id) if can? :build, @survey %>
+        <!-- <a href="#tab01"><%= t "edit" %></a> -->
+      </li>
+      <li><%= link_to t("overview"), survey_dashboard_index_path(@survey.id) if can?(:view_survey_dashboard, @survey) %></li>
+      <li>
+        <%= link_to t("Responses"), survey_responses_path(@survey.id)  if can?(:read, @survey) %>
+        <!-- <a href="#tab03"><%= t "Responses" %></a> -->
+      </li>
+      <li>
+        <!-- <a href="#tab04"><%= t "Reports" %></a> -->
+        <%= link_to t('reports'), report_survey_path(@survey.id) if can?(:report, @survey) && @survey.finalized? %>
+      </li>
+    </ul>
+  </div>
+
+  <div style="padding:15px;">
+    <a href="#" class="Btn colrBtn right">delete</a>
+    <a href="#" class="Btn colrBtn right inline-btn">publish</a>
+    <a href="#" class="Btn colrBtn right inline-btn">save</a>
+    <div class="clear"></div>
+  </div>
+
+  <div class="builder-survey-info">
+    <div class="builder-survey-name-info">
+      <form action="">
+        <input id="organization_name" name="organization[name]" type="text" 
+      value="Userworks Technologies Pvt Ltd"/>
+        <textarea name="organization[about]" placeholder="Write about your organization here" rows="auto">We are UserWorks!!! We are a technology and design driven company,and we create User Experiences that work for one and all.Business, Service, or Human Individual.asdfasd
+        </textarea>
+      </form>
+    </div>
+    <div class="total_questions"></div>
+    <div class="clear"></div>
+  </div>
+  
+  <form>
+    <div class="survey-builder">
+      
+      <div class="question-row singleLine">
+        <div class="question-container">
+          <input type="text" value="1) Name of the City?*" />
+        </div>
+        <div class="children-content">
+          <div class="no-of-characters">
+            No of characters
+            <input type="text" value="" />
+          </div>
+        </div>
+      </div><!--question row-->
+
+      <div class="question-row multichoice">
+        <div class="question-container">
+          <input type="text" value="2) Which is the most favourable season for leisure?" />
+
+          <div class="form-top-right-actions">
+            <a href="#" class="action delete"><img src="/assets/rubbish.svg" /></a>
+            <a href="#" class="action copy"><img src="/assets/copy.svg" /></a>
+            <a href="#" class="action note"><img src="/assets/note.svg" /></a>
+            <a href="#" class="action photo"><img src="/assets/photo.svg" /></a>
+            <a href="#" class="action setting"><img src="/assets/settings.svg" /></a>            
+          </div>
+        </div>
+        <div class="children-content">
+          <div class="add-in-bulk">            
+            <input type="text" value="Spring , Autumn" />
+            <button>Add</button>
+          </div>
+
+          <div class="first option">
+            <input type="checkbox" name="surveys" id="option-01" class="regular-checkbox">
+            <label for="option-01"></label>
+            <span class="label">summer</span>
+            <a href="#" class="add-option icon-btns"><img src="/assets/addQuestion.svg" /></a>
+            <a href="#" class="delete-option icon-btns"><img src="/assets/rubbish.svg" /></a>
+          </div>
+
+          <div class="second option">
+            <input type="checkbox" name="surveys" id="option-02" class="regular-checkbox">
+            <label for="option-02"></label>
+            <span class="label">summer</span>
+            <a href="#" class="add-option icon-btns"><img src="/assets/addQuestion.svg" /></a>
+            <a href="#" class="delete-option icon-btns"><img src="/assets/rubbish.svg" /></a>
+          </div>
+
+          <div class="question-row sub-question formwidget-container-editor multichoice">
+        <div class="question-container">
+          <input type="text" value="2.B.1) Which is the most favourable season for leisure?" />
+        </div>
+        <div class="children-content">
+          <div class="add-in-bulk">            
+            <input type="text" value="Spring , Autumn" />
+            <button>Add</button>
+          </div>
+
+          <div class="first option">
+            <input type="checkbox" name="surveys" id="option-01" class="regular-checkbox">
+            <label for="option-01"></label>
+            <span class="label">summer</span>
+            <a href="#" class="add-option icon-btns">X</a>
+            <a href="#" class="delete-option icon-btns">X</a>
+          </div>
+
+          <div class="first option">
+            <input type="checkbox" name="surveys" id="option-02" class="regular-checkbox">
+            <label for="option-02"></label>
+            <span class="label">summer</span>
+            <a href="#" class="add-option icon-btns">X</a>
+            <a href="#" class="delete-option icon-btns">X</a>
+          </div>
+
+          <div class="first option">
+            <input type="checkbox" name="surveys" id="option-03" class="regular-checkbox">
+            <label for="option-03"></label>
+            <span class="label">summer</span>
+            <a href="#" class="add-option icon-btns">X</a>
+            <a href="#" class="delete-option icon-btns">X</a>
+          </div>
+
+          <div class="first option"></div>
+        </div>
+      </div><!-- sub question row-->
+
+      <div class="question-row sub-question singleLine">
+        <div class="question-container">
+          <input type="text" value="2.B.2) Name of the City?*" />
+        </div>
+        <div class="children-content">
+          <div class="no-of-characters">
+            No of characters
+            <input type="text" value="" />
+          </div>
+        </div>
+      </div><!--question row-->
+
+
+          <div class="third option">
+            <input type="checkbox" name="surveys" id="option-03" class="regular-checkbox">
+            <label for="option-03"></label>
+            <span class="label">summer</span>
+            <a href="#" class="add-option icon-btns">X</a>
+            <a href="#" class="delete-option icon-btns">X</a>
+          </div>
+        
+        <div class="addQuestion">
+      <!--add question btn-->
+      <div class="question-types">
+        <ul>
+          <li>
+            <input type="radio" name="questionType" id="singleLine" class="regular-radio">
+            <label for="singleLine" class=""></label>
+            <span>Single Line</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="numeric" class="regular-radio">
+            <label for="numeric" class=""></label>
+            <span>Numeric</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="multiline" class="regular-radio">
+            <label for="multiline" class=""></label>
+            <span>Multiline</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="date" class="regular-radio">
+            <label for="date" class=""></label>
+            <span>Date</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="multichoice" class="regular-radio">
+            <label for="multichoice" class=""></label>
+            <span>Multi choice</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="category" class="regular-radio">
+            <label for="category" class=""></label>
+            <span>Category</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="rating" class="regular-radio">
+            <label for="rating" class=""></label>
+            <span>Rating</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="multiRecord" class="regular-radio">
+            <label for="multiRecord" class=""></label>
+            <span>Multi record</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="radio" class="regular-radio">
+            <label for="radio" class=""></label>
+            <span>Radio</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="photo" class="regular-radio">
+            <label for="photo" class=""></label>
+            <span>Photo</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="drodown" class="regular-radio">
+            <label for="drodown" class=""></label>
+            <span>Dropdown</span>
+          </li>
+        </ul>
+        <div class="clear"></div>
+        <button class="addBtn Btn nrmlBtn">Add</button>
+      </div>
+      <a href="#" class="add-question-btn"></a>
+    </div>          
+        </div>
+      </div><!--question row-->
+
+
+      <div class="question-row rating">
+        <div class="question-container">
+          <input type="text" value="3) how do you rate your online search experience so far ?*" />
+        </div>
+        <div class="children-content">
+          
+        </div>
+      </div><!--question row-->
+
+
+
+<div class="addQuestion">
+      <!--add question btn-->
+      <div class="question-types">
+        <ul>
+          <li>
+            <input type="radio" name="questionType" id="singleLine" class="regular-radio">
+            <label for="singleLine" class=""></label>
+            <span>Single Line</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="numeric" class="regular-radio">
+            <label for="numeric" class=""></label>
+            <span>Numeric</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="multiline" class="regular-radio">
+            <label for="multiline" class=""></label>
+            <span>Multiline</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="date" class="regular-radio">
+            <label for="date" class=""></label>
+            <span>Date</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="multichoice" class="regular-radio">
+            <label for="multichoice" class=""></label>
+            <span>Multi choice</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="category" class="regular-radio">
+            <label for="category" class=""></label>
+            <span>Category</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="rating" class="regular-radio">
+            <label for="rating" class=""></label>
+            <span>Rating</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="multiRecord" class="regular-radio">
+            <label for="multiRecord" class=""></label>
+            <span>Multi record</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="radio" class="regular-radio">
+            <label for="radio" class=""></label>
+            <span>Radio</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="photo" class="regular-radio">
+            <label for="photo" class=""></label>
+            <span>Photo</span>
+          </li>
+          <li>
+            <input type="radio" name="questionType" id="drodown" class="regular-radio">
+            <label for="drodown" class=""></label>
+            <span>Dropdown</span>
+          </li>
+        </ul>
+        <div class="clear"></div>
+        <button class="addBtn Btn nrmlBtn">Add</button>
+      </div>
+      <a href="#" class="add-question-btn"></a>
+    </div>
+      <div class="clear"></div>
+    </div><!--survey builder ends-->
+
+
+    
+  </form>
+</div>

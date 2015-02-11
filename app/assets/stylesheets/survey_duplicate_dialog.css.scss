@@ -1,0 +1,16 @@
+div#survey-duplicate-dialog {
+  .no-close .ui-dialog-titlebar-close {
+    display:none;
+  }
+
+
+  p { text-align: center; font-size: 16px; font-weight: 500; color:#727272;}
+
+  display: none;
+
+  .spinner {
+    margin: 10px auto 0 auto;
+    display: block;
+    padding-bottom: 20px;
+  }
+}

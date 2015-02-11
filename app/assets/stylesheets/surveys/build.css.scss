@@ -1,0 +1,484 @@
+body#build{
+  div#banner{width: 100px;}
+  /*div#page{margin: 0 0 0 80px;}*/
+
+  h3#welcome{position: fixed; top: 10px; right: 20px; text-align: right; margin: 0; line-height: 20px;}
+
+  div#content{
+    width: 500px;
+    float: left;
+
+    div#survey_builder{
+      margin: 0; padding: 0 20px;
+      position: relative;
+
+      ul#picker_pane{
+        display: block;
+        position: fixed;
+        left: 740px;
+        right: 40px;
+        top: 20px;
+        @include transition(all 1.0s ease-in-out);
+
+        padding: 1%;
+        list-style: none;
+        font-size: 16px;
+        line-height: 24px;
+
+        li{
+          width: 14%;
+          padding: 0;
+          margin: 1%;
+          list-style: none;
+          display: block;
+          float: left;
+          text-align: center;
+
+          a{
+            font-size: 13px;
+            display: block;
+            padding: 0;
+            background: $secondary-color;
+            color: $primary-color;
+            @include border-radius(10px);
+
+            &:hover{background: $secondary-color-light; border: none;}
+          }
+        }
+      }
+
+      div#settings_pane{
+        display: block;
+        position: fixed;
+        overflow: auto;
+        left: 740px;
+        right: 20px;
+        top: 132px;
+        bottom: 20px;
+        padding: 20px;
+        margin: 0;
+        background: $secondary-color-light;
+        border-bottom: solid 4px $secondary-color-light;
+        @include transition(all 1.0s ease-in-out);
+
+        // &:before{
+        //   content: "";
+        //   display: block;
+        //   width: 0; height: 0;
+        //   position: absolute;
+        //   border: solid 10px $secondary-color-light;
+        //   border-top-color: transparent;
+        //   border-left-color: transparent;
+        //   border-bottom-color: transparent;
+        //   margin-left: -20px;
+        //   left: 0;
+        // }
+
+        textarea#survey_description{height: 90px;}
+        textarea{height: 30px;}
+      }
+
+      div{margin-bottom: 6px;}
+
+      p.question_finalized, p.category_finalized {
+        float: right;
+        font-size: 15px;
+        color: $primary-color;
+      }
+
+      .add_option { float: left; }
+
+      div.option{
+        clear: both;
+        overflow: hidden;
+        margin-bottom: 12px;
+        border: solid 1px $secondary-color;
+
+        div, label, input{width: 45%; float: left; margin: 1%;}
+
+        p.option_finalized { text-align: center; }
+
+        div.actions{
+          float: right; width: 50%;
+          padding: 1%;
+          margin: 0;
+          text-align: left;
+          background: $white;
+
+          div.loading { font-size: 16px; height: 30px; }
+          select{width: 70%; margin-bottom: 12px; float: left;}
+          a.add_sub_question{width: auto;}
+          a{ margin: 0 4px 4px 0;}
+        }
+      }
+
+      div.add_option{
+        border-top: solid 1px $secondary-color;
+        padding-top: 10px;
+        margin-top: 10px;
+      }
+    }
+
+    div#dummy_pane{
+      div.star{
+        img{display: inline; margin: 0;}
+      }
+
+      img{display: block;}
+
+      label{
+        abbr{border: none; color: $danger;}
+      }
+
+      div#dummy_survey_details{
+        display: block;
+        img {
+          width: 100px;
+          float: right;
+        }
+      }
+
+      div.dummy_question, .dummy_category{
+        border: solid 1px $secondary-color-light;
+        position: relative;
+
+        .inline_errors{
+          display: block;
+          background: $white;
+          color: $danger;
+          padding: 0 6px;
+          line-height: 21px;
+        }
+
+        .identifier_icon{
+          display: block;
+          position: absolute;
+          top: 0; right: 54px;
+          width: 36px; height: 36px;
+          text-indent: -1000em;
+
+          &:before{
+            display: block;
+            position: absolute;
+            top: 0; right: 0;
+            font-family: "FontAwesome";
+            content: "\f02e";
+            font-size: 24px;
+            line-height: 22px;
+            text-indent: 0;
+            color: $danger;
+          }
+        }
+
+        .sub_question_group{
+          margin: 2px 0 0 0;
+
+          .sub_question_group_message{
+            margin: 0 0 0 20px;
+            padding: 10px;
+            background: $secondary-color-light;
+          }
+        }
+
+        div.collapse_category{
+          display: block; float: left;
+          margin: -8px 0 10px -28px;
+          color: $gray-xdark;
+        }
+
+        div.dummy_question, .sub_question_group_message, .dummy_category{
+          margin: 0 0 0 20px;
+          border-right: 0;
+          border-bottom: 0;
+
+          .dummy_question_content{margin: 0;}
+        }
+
+        .icon-lock {
+          font-size: 20px;
+          float: right;
+          color: $primary-color-light;
+        }
+
+        .dummy_category_content{margin: 0; padding-top: 8px;}
+        .sub_question_group_message{margin-bottom: 2px;}
+      }
+
+
+      div#dummy_survey_details>div{border: solid 1px $secondary-color-light;}
+      div.dummy_question_content, div.dummy_category_content, div#dummy_survey_details>div{
+        padding: 4px 10px 10px 30px;
+        margin-bottom: 4px;
+        position: relative;
+
+        span{display: block; float: left; margin-left: -20px; font-weight: bold;}
+
+        a.delete_question, a.delete_category, a.copy_question, a.copy_question_hidden {display: none;}
+        &:hover{/* background: $gray-xxlight;*/}
+
+        &.active{
+          background: $secondary-color-light;
+          a.delete_question, a.delete_category, a.copy_question {display: block; }
+
+          &:after{
+            content: "";
+            display: block;
+            position: absolute;
+            right: -1px;
+            top: 20px;
+            width: 0; height: 0;
+
+            border: solid 10px $white;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+          }
+
+          // &:before{
+          //   border: none;
+          //   border-left: solid 4px $secondary-color-light;
+          //   height: 240px;
+          //   right: -44px;
+          // }
+
+        }
+
+        div.collapse_category {
+          cursor: pointer;
+          color: $primary-color-light;
+          &:hover {
+            color: $primary-color;
+          }
+        }
+      }
+
+
+    }
+
+    .form-actions{
+      border-top: solid 2px $secondary-color-light; padding-top: 10px;
+      input[type="submit"], input[type="button"]{float: right;}
+      input.hidden {
+        display: none;
+      }
+    }
+  }
+}
+
+#spinner{
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+}
+
+#loading_overlay {
+  z-index: 99999;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  .spinner {
+    position: absolute;
+    left: 46%;
+    top: 36%;
+  }
+
+  p {
+    left: 46%;
+    text-align: center;
+    top: 42%;
+    color: $blue;
+    font-size: 25px;
+  }
+}
+
+img.thumb {
+  width: 100px;
+}
+
+
+/****** SURVEY BUILDER ********/
+.builder-survey-info {
+    clear: both;
+    padding: 15px 15px;
+    .builder-survey-name-info {
+        float: left;
+        width: 63%;
+        input[type="text"]{display: block; font-size: 16px; color:$black-subheader; font-weight: 500;}
+        textarea{display: block; width:100%; height:65px;}
+    }
+}
+
+.survey-builder {padding: 15px; clear: both; padding-bottom: 250px;}
+.addQuestion {clear: both; position: relative; /*margin-bottom: 250px;*/ padding: 15px 0px 0 0;}
+.add-question-btn {
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+    padding: 13px;    
+    background: transparent image-url('addQuestion.svg') no-repeat left top;
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+       -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        -ms-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.question-types {
+    position: absolute;
+    border: 1px solid #e0e0e0;
+    background: $white-color;
+    width: 264px;
+    padding: 10px 15px;
+    margin: 0px 0 0 27px;
+    display: none;
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+       -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        -ms-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    ul{
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+        li{
+            display: block;
+            width: 122px;
+            padding: 7px 5px;
+            float: left;
+            label, input{float: left;}
+            span{margin-left: 8px; line-height: 20px;}
+
+        }
+    }
+.addBtn {border: 0px;
+    background: none;
+    outline:none;
+    &:active{
+        background: #dddddd;
+        color: $peacockGreen-color;
+    };
+        }    
+}
+.show{display: block;}
+.dummy_question {
+    clear: both;
+    position: relative;
+    margin: 0px 0 15px 0;
+    border: 1px solid #e0e0e0;
+    padding: 10px 10px 0px 10px;
+    background: $extreme-light-gray;
+    .question-container {
+        margin: -10px -10px 0px -10px;  
+        background: #eeeeee;
+        padding: 10px 15px;
+        font-weight: 500;
+        input{color: $black-subheader; font-weight: 500; margin: 0px; width:500px;}   
+        .inline_errors {font-size: 12px; color: $errorRed-color;}   
+    }
+    .children-content{
+        padding: 15px 5px;        
+    }   
+}
+.no-of-characters {}
+.add-in-bulk{
+    clear: both;
+    input[type="text"]{ margin-right: 10px;}
+}
+.option {
+    clear: both;
+    padding:10px 0 5px 0;
+    input, label {float: left; margin-right: 10px; margin-top: 3px;}
+    span.label{border-bottom: 2px solid #dedede;}
+}
+
+.icon-btns {/*padding:3px 5px;*/
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    @include border-radius(2px);
+    border:1px solid #e0e0e0;
+    background-color: $dark-gray-background;
+    margin-left: 10px;
+
+    &:active {background-color: $white-color}
+}
+.add-option {background: transparent image-url('addQuestion.svg') no-repeat left top; background-size: 20px;
+}
+.delete-option {background: transparent image-url('rubbish.svg') no-repeat left top; background-size: 20px;
+}
+
+.sub-question {margin: 20px 0;}
+.formwidget-container-editor {    
+        -webkit-box-shadow: 1px 0 10px 1px rgba(0, 0, 0, 0.3);
+           -moz-box-shadow: 1px 0 10px 1px rgba(0, 0, 0, 0.3);
+            -ms-box-shadow: 1px 0 10px 1px rgba(0, 0, 0, 0.3);
+                box-shadow: 1px 0 10px 1px rgba(0, 0, 0, 0.3);
+}
+.form-top-right-actions {
+    float: right;
+    width: 250px;
+    text-align: right;
+
+.action{
+    padding:3px 5px;
+    display: inline-block;
+    margin-left: 10px;
+    img {/*width:20px;*/ height: 20px;}
+    &:active {background: $white-color}    
+}
+
+}
+.form-actions {
+  text-align: right;
+  padding: 15px 15px 0px 15px;
+  form {margin:0px; padding: 0px;}
+}
+.form-actions input.hidden {display: none;}
+
+/*.identifier_icon{
+          display: block;
+          position: absolute;
+          top: 0; right: 54px;
+          width: 36px; height: 36px;
+          text-indent: -1000em;
+
+          &:before{
+            display: block;
+            position: absolute;
+            top: 0; right: 0;
+            font-family: "FontAwesome";
+            content: "\f02e";
+            font-size: 24px;
+            line-height: 22px;
+            text-indent: 0;
+            color: $danger;
+          }
+        }*/
+
+.identifier_icon {
+                display: block;
+                position: absolute;              
+                top: 0;
+                right: 136px;
+                width: 36px;
+                height: 36px;
+                text-indent: -1000em;
+                &:before {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    font-family: "FontAwesome";
+                    content: "\f02e";
+                    font-size: 24px;
+                    line-height: 22px;
+                    text-indent: 0;
+                    color: $danger;
+              }
+}
+

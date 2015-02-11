@@ -1,0 +1,96 @@
+<surveyquestion class="question-row" style="display:block;" id="{{id}}">
+  <surveyquestionchild  id="{{id}}">
+    <span class="question-container">
+      <div class="questionWrp">
+        <span>{{question_number}})</span>
+        <input type="text" name="content" value="{{content}}"/>
+        {{#id}}
+      </div>
+      {{#finalized}}
+      <%= render "templates/dummies/finalized_icon" %>
+      {{/finalized}}
+    {{^finalized}}
+      <span class="form-top-right-actions">
+        <a href="javascript:void(0)" class="delete_question">
+        </a>
+        <a href="{{duplicate_url}}" class="copy_question" data-method="post"></a>
+        <div class="ref_img">
+          <%= render "templates/questions/file_upload" %>
+        </div>
+        <div class="settingOptionsWrp">
+          <a href="#" class="setting"><img src="/assets/settings.svg"></a>
+          <div class="setting-options">
+            <%= render "templates/questions/identifier" %>
+            <%= render "templates/questions/private" %>
+            <div class="checkbox">
+              {{#mandatory}}
+              <input type="checkbox" name="mandatory" value="{{mandatory}}" checked id="mandatory{{id}}" class="regular-checkbox" />
+              {{/mandatory}}
+            {{^mandatory}}
+              <input type="checkbox" name="mandatory" value="{{mandatory}}" id="mandatory{{id}}" class="regular-checkbox"/>
+              {{/mandatory}}
+              <label for="mandatory{{id}}"></label>
+              <span><%= t("activerecord.attributes.question.mandatory") %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </span>
+      {{/finalized}}
+    </span>
+    <div class="children-content">
+      <div class="inline_errors">{{errors}}</div>
+      {{#id}}
+      <div class="addQuestion add-subQuestion">
+        <div class="question-types">
+          <ul>
+            <li>
+              <span><a href="javascript:void(0)" id="SingleLineQuestion" class="clsaddquestion_sub_2">Single Line</a></span>
+            </li>
+            <li>
+              <span><a href="javascript:void(0)" id="NumericQuestion" class="clsaddquestion_sub_2">Numeric</a></span>
+            </li>
+            <li>
+              <span><a href="javascript:void(0)" id="MultilineQuestion" class="clsaddquestion_sub_2">Multiline</a></span>
+            </li>
+            <li>
+              <span><a href="javascript:void(0)" id="DateQuestion" class="clsaddquestion_sub_2">Date</a></span>
+            </li>
+            <li>
+              <span><a href="javascript:void(0)" id="MultiChoiceQuestion" class="clsaddquestion_sub_2">Multichoice</a></span>
+            </li>
+            <li>
+              <span><a href="javascript:void(0)" id="RatingQuestion" class="clsaddquestion_sub_2">Rating</a></span>
+            </li>
+            <li>
+              <span><a href="javascript:void(0)" id="RadioQuestion" class="clsaddquestion_sub_2">Radio</a></span>
+            </li>
+            <li>
+              <span><a href="javascript:void(0)" id="PhotoQuestion" class="clsaddquestion_sub_2">Photo</a></span>
+            </li>
+            <li>
+              <span><a href="javascript:void(0)" id="DropDownQuestion" class="clsaddquestion_sub_2">Dropdown</a></span>
+            </li>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <a class='add_sub_question_2 add-option icon-btns' href='javascript:void(0);'></a>
+      </div>
+      {{^has_multi_record_ancestor}}
+    {{/has_multi_record_ancestor}}
+    
+  {{/id}}
+  {{^id}}
+    
+  {{/id}}
+      <div>{{errors}}</div>
+      <%= render "templates/questions/option_finalized_message" %>
+      {{^has_multi_record_ancestor}}
+  {{/has_multi_record_ancestor}}
+{{/id}}
+{{^id}}
+      <%= render 'templates/loading' %>
+      {{/id}}
+      <%= render "templates/questions/category_finalized_message" %>
+    </surveyquestionchild>
+  </div>

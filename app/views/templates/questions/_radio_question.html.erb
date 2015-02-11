@@ -1,0 +1,28 @@
+<div>
+  <label><%= t("surveys.build.question_title") %> </label>
+  <input type="text" name="content" value="{{content}}"></input>
+</div>
+
+<div class="checkbox">
+  {{#mandatory}}
+		<input type="checkbox" name="mandatory" value="{{mandatory}}" checked ></input>
+	{{/mandatory}}
+	{{^mandatory}}
+		<input type="checkbox" name="mandatory" value="{{mandatory}}"></input>
+	{{/mandatory}}
+  <label><%= t("activerecord.attributes.question.mandatory") %> </label>
+</div>
+
+<%= render "templates/questions/question_finalized_message" %>
+<%= render "templates/questions/identifier" %>
+<%= render "templates/questions/private" %>
+
+{{#id}}
+  <%= render "templates/questions/file_upload" %>
+  <div class="add_option"><%= button_tag t("add_option"), :class => "add_option" %></div>
+  <textarea class="add_options_in_bulk" placeholder="<%= t('surveys.build.add_options_in_bulk_help_text') %>"></textarea>
+  <div class="add_options_in_bulk"><%= button_tag t("surveys.build.add_options_in_bulk_label"), :class => "add_options_in_bulk" %></div>
+{{/id}}
+{{^id}}
+  <%= render 'templates/loading' %>
+{{/id}}

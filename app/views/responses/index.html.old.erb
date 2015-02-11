@@ -1,0 +1,160 @@
+<div class="container">
+  <header id="backBtnContainer">
+    <h2 class="left">
+      <%= t('.list_of_responses', :survey_name => @survey.name) %>
+    </h2>
+    <%= link_to icon_for('icon-table', t('.download_excel')), 'javascript:void(0);', :class => 'download_excel Btn colrBtn right' if @complete_responses_count > 0 && can?(:generate_excel, @survey) %>
+    <%= link_to icon_for('icon-plus', t('.add_response')), survey_responses_path(@survey), :method => :post, :class => 'add_response Btn colrBtn right inline-btn' if can?(:create, Response.new(:survey => @survey)) && !@survey.expired? %>
+    <a  class="searchBtn right"></a>
+  </header>
+  <div class="blue_tabs">
+    <ul class="tab-links">
+      <li >
+        <%= link_to  t('edit'), survey_build_path(@survey.id) if can? :build, @survey %>
+        <!-- <a href="#tab01"><%= t "edit" %></a> -->
+      </li>
+      <li ><%= link_to t("overview"), survey_dashboard_index_path(@survey.id) if can?(:view_survey_dashboard, @survey) %></li>
+      <li class="active">
+        <%= link_to t("Responses"), survey_responses_path(@survey.id)  if can?(:read, @survey) %>
+        <!-- <a href="#tab03"><%= t "Responses" %></a> -->
+      </li>
+      <li>
+        <!-- <a href="#tab04"><%= t "Reports" %></a> -->
+        <%= link_to t('reports'), report_survey_path(@survey.id) if can?(:report, @survey) && @survey.finalized? %>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <% unless @responses.blank? %>
+      <!-- <table class="surveys_table table_list"> -->
+      <div class="survey-list-heading responses-list-heading">
+        <ul>
+          <% @survey.identifier_questions.take(2).each do |question| %>
+            <li class="rightBorder"><%= question.content %></li>
+            <!-- <li class="rightBorder">Question03</li>
+          <li class="rightBorder">Location</li>
+          <li class="rightBorder">Last update at</li>
+          <li class="rightBorder"><%= t ".users" %></li>
+          <li class="">Agent name</li> -->
+            <!-- <thead> -->
+            <!-- <th>
+            </th> -->
+          <% end %>
+          <li><%= t("activerecord.attributes.response.location") %></li>
+          <li><%= t(".last_updated_at") %></li>
+          <li><%= t(".added_by") %></li>
+          <!-- <th><%= t("activerecord.attributes.response.location") %></th>
+          <th><%= t(".last_updated_at") %></th>
+          <th><%= t(".added_by") %></th> -->
+          <!-- <th>&nbsp;</th>
+          <th class="actions">&nbsp;</th>
+                  </thead> -->
+          <ul>
+            <div class="clear"></div>
+          </div>
+          <tbody>
+            <% @responses.each do |response| %>
+              <%= puts response.inspect %>
+              <div class="survey-row responce-row <%= response.status %>">
+                <div class="survey-info">
+                  <ul>
+                    <% @survey.identifier_questions.take(2).each do |question| %>
+                      <% answer = Answer.find_by_response_id_and_question_id(response.id, question.id) %>
+                      <li class="">
+                        
+                          <% if answer.blank? %>
+                            <!-- Patching this bug. Does not solve the issue, but at least the page doesn't bomb. -->
+                            <!-- https://www.pivotaltracker.com/story/show/53539811 -->
+                            <!-- TODO: Remove this when the bug is fixed. -->
+                            <%= t(".no_answer_present") %>
+                          <% elsif answer.photo_url.present? %>
+                            <%= image_tag answer.photo_url(:format => :thumb), :class => 'thumb' %>
+                          <% else %>
+                            <%= answer.content %>
+                          <% end %>
+                        </span>
+                      </li>
+                    <% end %>
+                    <li><%= response.location %></li>
+                    <li><%= I18n.localize(response.last_update) %></li>
+                    <li><%= @users.find_by_id(response.user_id).name if response.user_id %></li>
+                    <li>
+                      <% if response.status == 'complete' %>
+                        <p class="status"><%= t('.complete') %></p>
+                      <% else %>
+                        <p class="status"><%= t('.incomplete') %></p>
+                      <% end %>
+                    </li>
+                    <!-- <li class="">
+                     2014/12/25
+                    </li>
+                    
+                    <li class="">
+                      200
+                    </li>
+                    
+                    <li class="">
+                      lorem ipsume lorem ipsume
+                    </li>
+                    
+                    <li class="">
+                      Pune
+                    </li>
+                    
+                    <li class="">
+                      Wed 24 Dec 2014
+                    </li>                  -->
+                  </ul>
+                  <div class="clear"></div>
+                </div>
+                <div class="survey-actions actions">
+                  <ul class="listOf-survey-actions">
+                  <%= link_to icon_for('icon-edit', 'Show'), survey_response_path(:id => response.id), :class => 'show_response Btn nrmlBtn inline-btn' if can? :show, response %>
+                <%= link_to icon_for('icon-edit', 'Edit'), edit_survey_response_path(:id => response.id), :class => 'edit_response Btn nrmlBtn inline-btn' if can? :edit, response %>
+                <%= link_to icon_for('icon-remove', 'Delete'), survey_response_path(:id => response.id), :method => :delete, :class => 'delete_response Btn nrmlBtn inline-btn', :data => { :confirm => t(:confirm) } if can? :destroy, response %>
+                   <!--  <a href="#" class="Btn nrmlBtn inline-btn">Show</a>
+                   <a href="#" class="Btn nrmlBtn inline-btn">edit</a>
+                   <a href="#" class="Btn nrmlBtn inline-btn">delete</a> -->
+                  </ul>
+                </div>
+              </div>
+              <!--  <tr class="survey_row <%= response.status %>"> -->
+              <!--  <td>
+                 
+               </td>
+               
+                -->
+              <td>
+                <%= response.location %>
+              </td>
+              <td>
+                <%= I18n.localize(response.last_update) %>
+              </td>
+              <td>
+                <%= @users.find_by_id(response.user_id).name if response.user_id %>
+              </td>
+              <td>
+                <% if response.status == 'complete' %>
+                  <p class="status"><%= t('.complete') %></p>
+                <% else %>
+                  <p class="status"><%= t('.incomplete') %></p>
+                <% end %>
+              </td>
+              <td class="actions">
+                <%= link_to icon_for('icon-edit', 'Show'), survey_response_path(:id => response.id), :class => 'show_response' if can? :show, response %>
+                <%= link_to icon_for('icon-edit', 'Edit'), edit_survey_response_path(:id => response.id), :class => 'edit_response' if can? :edit, response %>
+                <%= link_to icon_for('icon-remove', 'Delete'), survey_response_path(:id => response.id), :method => :delete, :class => 'delete_response', :data => { :confirm => t(:confirm) } if can? :destroy, response %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    <%= render "responses/excel_dialog" %>
+    <%= render "responses/excel_password_dialog" %>
+  </div>
+</div>
+<%= will_paginate @responses ,:page_links => false  %>
+<script type="text/javascript">
+  new SurveyApp.ExcelDownloader($("#excel-dialog"), $(".download_excel"), <%= @survey.id %>)
+</script>

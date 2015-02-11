@@ -1,0 +1,123 @@
+<div class="header">
+  <div class="wrapper">
+    <h1 id="logo">
+      <a href="/">
+        <%= t(:application_title) %>
+      </a>
+    </h1>
+    <div id="language_selection" class="lang">
+      <div id="current_lang"><a>En</a></div>
+      <div class="popUp" id="lang">
+        <a class="close_btn"></a>
+        <header>
+          <h2><%= t("chnage_language") %></h2>
+        </header>
+        <div class="langWrp">
+          <%= link_to "English", { locale: nil } ,class: "Btn nrmlBtn" ,'data_id' => 'en' %>
+          <%= link_to "French", { locale: 'fr' } ,class: "Btn nrmlBtn" ,'data_id' => 'fr' %>
+        </div>
+      </div>
+    </div>
+    <% if !user_currently_logged_in? %>
+      <%= link_to '/auth/user_owner', :class => 'signin Btn colrBtn right' do %>
+        <span>
+          <%= t("header.log_in")  %>
+        </span>
+      <% end %>
+    <% end %>
+    <a href="#" class="overlay"></a>
+    <a href="#" class="overlay_for_dropdown"></a>
+    <% if user_currently_logged_in? %>
+      <div id="welcome">
+        <span>
+          <%= t("header.logged_in_as", :username => current_username) %>
+        </span>
+        <div id="user_options" class="profilePopUp">
+          <ul>
+            <li>
+              <a>Help</a>
+            </li>
+            <% if user_currently_logged_in? %>
+              <li>
+                <%= link_to t("header.logout"), logout_path, :class =>  'logout' %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+    <!-- <%=  %><div id="banner" role="banner"> -->
+    <div class="clear"></div>
+    <!-- </div> -->
+  </div>
+</div>
+<div class="mainNav">
+  <div class="wrapper">
+    <ul class="mainMenu">
+      <!-- <li>
+        <%= link_to root_path, :class => 'home'  do %>
+          <span><%= t("header.home")  %></span>
+        <% end %>
+      </li> -->
+      <% if user_currently_logged_in? %>
+        <% if can? :create, Survey %>
+          <li class="surveys publications responses survey_dashboard" >
+            <%= link_to surveys_path, :class => "add apps surveys" do %>
+              <span>
+                <%= t("header.create_survey") %>
+              </span>
+            <% end %>
+          </li>
+          <!-- <% if ENV["SURVEY_BUILDER_V2"] %>
+                <li>
+                  <%= link_to "Create V2", new_v2_survey_builder_survey_path, :method => :get, :class => "add" %>
+                </li>
+              <% end %> -->
+        <% end %>
+        <% if signed_in_as_cso_admin? %>
+          <li class=" ">
+            <%= link_to current_user_org_path, :class => 'organization' do%>
+              <!-- dashboard_path(:id => current_user_info[:org_id]) -->
+              <span><%= t("header.organization") %></span>
+            <% end %>
+          </li>
+        <% end %>
+        <% if can? :view_dashboard, :index %>
+          <li class="organization_dashboards">
+            <%= link_to  dashboards_path, :class => 'dashboard' do %>
+              <span><%= t("header.dashboard") %></span>
+            <% end %>
+          </li>
+        <% elsif can? :view_dashboard, current_user_info[:org_id] %>
+          <li class="organization_dashboards">
+            <%= link_to dashboard_path(:id => current_user_info[:org_id]), :class => 'dashboard' do %>
+              <span>
+                <%=  t("header.dashboard") %>
+              </span>
+            <% end %>
+          </li>
+        <% end %>
+        <% unless Rails.env.production? %>
+          <li>
+            <%= "You are a #{current_user_info.try(:[], :role)}" %>
+          </li>
+        <% end %>
+      <% else %>
+        <% if Feature.active?(:register_link) %>
+          <li>
+            <%= link_to  register_path, :class => 'register' do %>
+              <span><%= t("header.register") %></span>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <div class="clear"></div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  var activeStatusId = ".mainMenu ." + "<%= status %>";
+  $(activeStatusId).addClass("active");
+</script>

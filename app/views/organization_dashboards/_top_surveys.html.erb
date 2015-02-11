@@ -1,0 +1,19 @@
+<% @top_surveys.each do |survey| %>
+  <tr>
+    <td align="left">
+      <span class="survey_name"><%= survey.name %></span>
+      <span class="org_name"><%= survey.organization_name(@organizations) %></span>
+    </td>
+    <td align="left">
+      <%= survey.description %>
+    </td>
+    <td align="center">
+      <%= link_to survey.responses_count(current_ability).to_s, survey_responses_path(survey.id), :class => survey.class_for_disabled  if can?(:read, survey) && survey.has_responses? %>
+    </td>
+    <!-- <td align="center">20</td> -->
+    <td align="center">
+      <%= link_to  " ", report_survey_path(survey.id), :class => "reports-link" if can?(:report, survey) && survey.finalized? && survey.has_responses? %>
+    </td>
+    <td align="left"><%= I18n.localize(survey.expiry_date) %></td>
+  </tr>
+<% end %>

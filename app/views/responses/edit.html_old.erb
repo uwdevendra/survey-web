@@ -1,0 +1,162 @@
+<%#= render "layouts/status_bar", :status => "collect" %>
+ <% if @disabled %>
+  <style type="text/css" rel="stylesheet">
+  .inline-hints {display: none;}
+  </style>
+ <% end %>
+
+<div class="container">
+<header id="backBtnContainer">
+    <h2 class="left">
+      <a href="#" class="backBtn"></a>
+      <span>
+        Response: <%=  @response.id %>
+        <span class="subHeading">
+          <%= @survey.name.titleize %>
+        </span>
+      </span>
+    </h2>
+</header>
+<div class="blue_tabs">
+  <ul class="tab-links">
+    <li ><a href="#">Preview</a></li>
+    <li class="active"><a href="#">Edit</a>
+  </ul>
+</div>
+
+<div class="responce-options">
+<%= button_to t(".delete"), survey_response_path(@survey.id, @response.id),:class => "delete-button Btn colrBtn right", :method => :delete, :data => { :confirm => t(:confirm) } if can? :destroy, @response %>
+
+<%= button_to t(".edit"), edit_survey_response_path(@survey.id, @response.id),:class => "edit-button Btn colrBtn 
+inline-btn right", :method => :get if @disabled && (can? :edit, @response) %> 
+
+
+
+<div class="clear"></div>
+</div>
+<% if @disabled && can?(:provide_state, @response) %>
+  <div id="data_cleaning">
+      <%= semantic_form_for [@survey, @response] do |f| %>
+       <!--  <fieldset> 
+            <legend>-->
+              <h4><%= t('.data_cleaning') %></h4>
+            <!-- </legend> -->
+            <div class="question">
+              <%= f.input :state, :as => :select, :collection => ["clean", "dirty"] %>              
+              <%= f.input :comment %>
+              <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+              
+            <%= f.actions do %>
+                <%= f.action :submit, :as => :button, :label => t('.save_response'), :button_html => { :id => 'save_as_draft_button' } %>
+            <% end %>
+        <!-- </fieldset> -->
+      <% end %>
+  </div>
+  <% end %>
+
+<div class="surveyResponce">
+  <div class="surveyName-description">
+    <% if @response.survey_public? %>
+      <h4><%= @survey.name %></h4>
+    <%= @survey.description %> 
+   <% else %>
+    <h2><%= t('.edit_response') %> <%= @survey.name %></h2>
+  <% end %>
+  </div>
+  <div class="clear"></div>
+
+
+<% cache = [] %>
+<%= semantic_form_for [@survey, @response], :html => { :multipart => true } do |f| %>
+  <%= f.input :status, :as => :hidden %>
+  <%= f.semantic_fields_for :answers, @response.sort_answers(@answers) do |f| %>
+    <% question = f.object.question %>
+    <%# question.type %>
+    <%= question.category.decorate.category_name(f.object.record_id, f.object.response_id, cache, @disabled)  if question.category %>
+    <div class="question <%= "hidden sub_question" if question.parent || question.category.try(:sub_question?)  %>" data-parent-id="<%= question.parent_id %>" data-category-id="<%= question.category_id %>" data-nesting-level="<%= question.nesting_level %>" data-record-id="<%= f.object.record_id %> " style="margin-left:15px !important;">
+      <%= image_tag question.image_url(:medium), :class => "medium" if question.image_url %>
+      <%= question.decorate.input_tag(f, {:disabled => @disabled}) %>
+      <%= f.input :question_id, :as => :hidden %>
+      <%= f.input :record_id, :as => :hidden %>
+      <%= f.input :_destroy, :as => :hidden, :input_html => { :class => "allow-destroy" } %>
+    </div>    
+  <% end %>
+  <% unless @disabled %>
+  <div style="padding:15px;">
+    <%= f.actions do %>
+      <% if @response.survey_public? %>
+        <%= f.action :submit, :as => :button, :label => t('.save_response'), :button_html => { :id => 'complete_button', :class => 'public_save_button Btn colrBtn'} %>
+      <% else %>
+        <%= f.action :submit, :as => :button, :label => t('.save_as_draft'), :button_html => { :id => 'save_as_draft_button',:class => 'Btn colrBtn' } unless @response.complete? %>
+        <%= f.action :submit, :as => :button, :label => t('.mark_as_complete'), :button_html => { :id => 'complete_button' ,:class => 'Btn colrBtn'}  %>
+      <% end %>
+
+  <% end %>
+<% end %>
+
+
+<% end %>
+
+<% if @disabled && JSON.parse(@marker).any? %>
+  <div id="location_map">
+    <p><%= t('.location') %></p>
+    <%= gmaps4rails(@marker) %>
+  </div>
+<% else %>
+  <div id="location_map">
+    <p><%= t('.location_unavailable') %></p>
+  </div>
+<% end %>
+</div>
+
+
+  <div class="clear"></div>
+  </div>
+  </div>
+
+
+<% if @response.answers.any? { |a| a.errors.full_messages.present? } && @survey.public? %>
+  <script type="text/javascript">alert("<%= t('.errors_in_response') %>")</script>
+<% end %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.date').datepicker({ dateFormat: "yy/mm/dd", changeMonth: true, changeYear: true });
+    $('.max_length').each(function(index){
+      $(this).charCount({
+        allowed: $(this).data('max-length'),
+        warning: 5,
+        counterText: 'Characters left: '
+      });
+    });
+    $('.star').each(function(index){
+      $(this).raty({
+        number: $(this).data('number-of-stars') || 5,
+        score: $(this).data('score'),
+        <%= 'readOnly: true,' if @disabled %>
+        click: function() {
+          $(this).prev().children('input').val($(this).raty('score'))
+        }
+      });
+    });
+    $('#complete_button').click(function(){
+      $('#response_status').val("complete")
+    })
+
+    $("form").submit(function(){
+      $("#complete_button").attr('disabled', true);
+      $("#save_as_draft_button").attr('disabled', true);
+    });
+
+    prepare_multi_record(<%= @response.records.order('records.id').map { |r| [r.id, r.category_id] } %>, <%= @disabled %>)
+    organize_sub_questions()
+    $.datepicker.setDefaults($.datepicker.regional['<%= locale %>']);
+
+
+    $("input, textarea,.select").click(function(e){
+      $(".question").removeClass('activeQuestion');
+      $(e.target).parents(".question").addClass('activeQuestion');
+    });
+  });
+</script>

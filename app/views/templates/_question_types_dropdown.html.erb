@@ -1,0 +1,13 @@
+<% types = [
+            "<option value='SingleLineQuestion'>#{t 'surveys.build.add_single_line_question'}</option>",
+            "<option value='RadioQuestion'>#{t 'surveys.build.add_radio_question'}</option>",
+            "<option value='MultilineQuestion'>#{t 'surveys.build.add_multiline_question'}</option>",
+            "<option value='NumericQuestion'>#{t 'surveys.build.add_numeric_question'}</option>",
+            "<option value='DateQuestion'>#{t 'surveys.build.add_date_question'}</option>",
+            "<option value='MultiChoiceQuestion'>#{t 'surveys.build.add_multi_choice_question'}</option>",
+            "<option value='DropDownQuestion'>#{t 'surveys.build.add_drop_down_question'}</option>",
+            "<option value='PhotoQuestion'>#{t 'surveys.build.add_photo_question'}</option>",
+            "<option value='RatingQuestion'>#{t 'surveys.build.add_rating_question'}</option>"
+          ]
+%>
+<%= select_tag 'questions', types.join.html_safe %>

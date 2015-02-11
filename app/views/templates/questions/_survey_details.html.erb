@@ -1,0 +1,14 @@
+<div>
+  <label><%= t("activerecord.attributes.survey.name") %></label>
+  <input type="text" name="name" value="{{name}}"></input>
+</div>
+
+<div>
+  <label><%= t("activerecord.attributes.survey.expiry_date") %> </label>
+  <input id="expiry_date" type="text" name="expiry_date" value="{{expiry_date}}"></input>
+</div>
+
+<div>
+  <label><%= t("activerecord.attributes.survey.description") %></label>
+  <textarea name="description" id="survey_description"><%= "{{description}}" %></textarea>
+</div>

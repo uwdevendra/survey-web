@@ -1,0 +1,142 @@
+/*@font-face {
+    font-family: 'ptsans';
+    src: image-url('font/PTS76F-webfont.eot');
+    src: image-url('font/PTS76F-webfont.eot?#iefix') format('embedded-opentype'),
+         image-url('font/PTS76F-webfont.woff') format('woff'),
+         image-url('font/PTS76F-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'ptsans';
+    src: image-url('font/PTS75F-webfont.eot');
+    src: image-url('font/PTS75F-webfont.eot?#iefix') format('embedded-opentype'),
+         image-url('font/PTS75F-webfont.woff') format('woff'),
+         image-url('font/PTS75F-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ptsans';
+    src: image-url('font/PTS56F-webfont.eot');
+    src: image-url('font/PTS56F-webfont.eot?#iefix') format('embedded-opentype'),
+         image-url('font/PTS56F-webfont.woff') format('woff'),
+         image-url('font/PTS56F-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'ptsans';
+    src: image-url('font/PTS55F-webfont.eot');
+    src: image-url('font/PTS55F-webfont.eot?#iefix') format('embedded-opentype'),
+         image-url('font/PTS55F-webfont.woff') format('woff'),
+         image-url('font/PTS55F-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html,body,input,select,textarea{font-family: 'ptsans', 'Gill sans', 'Trebuchet MS', sans;}
+*/
+
+header{
+  /*padding: 10px 20px;
+  background: $secondary-color-light;*/
+  h2, h3, h2 span, h3 span{color: $primary-color-light;}
+  h2{font-weight: 300; font-size: 24px; line-height: 30px;}
+  h4{font-weight: 400;}  
+  h4 a{font-weight: 700;}
+  form{float: right;}
+
+  /*&>a{
+    float: right;    
+    padding: 0 6px;
+    line-height: 24px;
+    background: $secondary-color;
+    color: $white;
+    @include border-radius(2px);
+
+    &:hover{
+      border: none;
+      background: $white;
+      color: $secondary-color;
+    }
+  }*/
+}
+
+html,body,input,select,textarea ,button {font-family:'Roboto', sans-serif;}
+
+html, body{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+h1, h2, h3, h4{margin: 10px 0 0px 0; color: $black; font-weight: 700;}
+h5 {font-weight: 500; font-size: 16px; color: #101c26; margin: 0 0 0px 0;}
+
+h2{font-size: 18px;}
+h3{font-size: 16px;}
+h4{font-weight: 500; font-size: 20px; color: $black-subheader; margin: 0 0 10px 0;}
+/*h2 span, h3 span, h4 span{font-weight: normal; color: $gray; display: block;}*/
+
+form h2{
+  color: $primary-color;
+  font-weight: 300;
+  font-size: 24px;
+  padding-bottom: 4px;
+}
+
+div[role="complementary"]{
+  h2, h3, h4{color: $gray-dark; margin: 8px 10px 4px 10px;}
+  div{
+    margin: 4px 10px;
+    h2, h3, h4{margin: 4px 0;}
+  }
+  h2{
+    text-transform: uppercase;
+    font-weight: 300;
+  
+
+    a.view-all{
+      float: right;
+      text-transform: none;
+      font-size: 13px;
+      font-weight: 400;
+    }
+  }
+  h3{font-size: 15px;}
+}
+
+a{color: $gray-body-color; text-decoration: none;
+
+&:hover , &:active {color:$orange-title-color;}
+
+}
+h4 {font-family:'Roboto', sans-serif;}
+/*a:hover{border-bottom: dotted 1px;}*/
+
+/*new style by aarti */
+header{
+  padding: 10px 15px 10px 15px;
+  border-bottom:1px solid #e0e0e0;
+  h2, h3, h2 span, h3 span{color: $orange-title-color;}
+  h2{font-weight: 500; font-size: 18px; line-height: 25px; color:$orange-title-color; width: 45%;
+    span{
+        display: inline-block;
+        width: 390px;  
+      }  
+    }
+  h4{font-weight: 500;}
+  h4 a{font-weight: 700;}
+
+}
+header:after {content: ".";
+  display:block;
+  clear:both;
+  height:0px;
+  font-size:0px;
+}
+

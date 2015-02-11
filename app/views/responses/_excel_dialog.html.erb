@@ -1,0 +1,61 @@
+<div id="excel-dialog" style="display:none;" title="<%= t('responses.excel.excel_dialog_title') %>" >
+
+<!-- <div id="excel-dialog" style="display:none;">
+<%= t('responses.excel.excel_dialog_title') %> -->
+
+  <div class="setup">
+    <!-- <fieldset class="pick-date-range">
+      <legend>
+        <input id="date-range-checkbox" type="checkbox"></input>
+        <label class='date-range' for="date-range-checkbox">Pick Date Range</label>
+      </legend>
+
+      <input disabled type="text" class="from-date date-picker" placeholder="<%= t('responses.excel.from_date')%>"></input>
+      <input disabled type="text" class="to-date date-picker" placeholder="<%= t('responses.excel.to_date')%>"></input>
+    </fieldset> -->
+
+
+    <div class="pick-date-range">
+      <div class="heading">
+        <input type="checkbox" id="date-range-checkbox" class="regular-checkbox"></input>
+        <label for="date-range-checkbox"></label>
+        <span class='date-range'>Pick Date Range</span>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+
+      <input disabled type="text" class="from-date date-picker" placeholder="<%= t('responses.excel.from_date')%>">
+      </input>   
+      <input disabled type="text" class="to-date date-picker" placeholder="<%= t('responses.excel.to_date')%>"></input>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+
+
+    <% if can? :change_excel_filters, @survey %>
+      <div class='other-settings'>
+        <div class="heading"><%= t('responses.excel.settings') %></div>
+        <div class="clear"></div>
+
+        <div class="filter-private-questions">
+          <input type="checkbox" id="filter-private-checkbox" class="regular-checkbox"></input>
+          <label for="filter-private-checkbox"></label>
+          <span class='filter-private-label'><%= t('responses.excel.include_private_fields') %></span>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+
+
+    <div class="error-message"></div>
+    <button class="generate-button"><%= t("responses.excel.generate_excel") %></button>
+    <button class="cancel-button"><%= t("responses.excel.cancel") %></button>
+  </div>
+
+  <div class="polling">
+    <div id="dialog" title="<%= t('responses.excel.excel_dialog_title') %>">
+      <%= image_tag 'spinner.gif', :class => "excel_spinner" %>
+      <p class="polling-message"><%= t('responses.excel.excel_downloading_message') %></p>
+    </div>
+  </div>
+</div>

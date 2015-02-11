@@ -1,0 +1,50 @@
+<div id="banner" role="banner">
+  <ul>
+    <li>
+      <%= link_to t("header.home"), root_path, :class => 'home' %>
+    </li>
+    <% if user_currently_logged_in? %>
+      <% if can? :create, Survey %>
+        <li>
+          <%= link_to t(".create_survey"), surveys_path, :method => :post, :class => "add" %>
+        </li>
+        <% if ENV["SURVEY_BUILDER_V2"] %>
+          <li>
+            <%= link_to "Create V2", new_v2_survey_builder_survey_path, :method => :get, :class => "add" %>
+          </li>
+        <% end %>
+      <% end %>
+      <% if signed_in_as_cso_admin? %>
+        <li>
+          <%= link_to t("header.create_user"), new_user_path, :class => 'create'%>
+        </li>
+      <% end %>
+      <% if can? :view_dashboard, :index %>
+        <li>
+          <%= link_to t("header.dashboard"), dashboards_path, :class => 'dashboard' %>
+        </li>
+      <% elsif can? :view_dashboard, current_user_info[:org_id] %>
+        <li>
+          <%= link_to t("header.dashboard"), dashboard_path(:id => current_user_info[:org_id]), :class => 'dashboard' %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to t("header.logout"), logout_path, :class => 'logout' %>
+      </li>
+      <% unless Rails.env.production? %>
+        <li>
+          <%= "You are a #{current_user_info.try(:[], :role)}" %>
+        </li>
+      <% end %>
+    <% else %>
+      <li>
+        <%= link_to t("header.log_in"), '/auth/user_owner', :class => 'signin' %>
+      </li>
+      <% if Feature.active?(:register_link) %>
+        <li>
+          <%= link_to t("header.register"), register_path, :class => 'register' %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

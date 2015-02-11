@@ -1,0 +1,276 @@
+fr:
+  application_title: "Application de l'enquête"
+  confirm: "Etes-vous sûr?"
+  login_again: Votre session a expiré. S'il vous plaît vous connecter à nouveau.
+  skip: "fr Skip"
+
+  header:
+    home: "Page d'accueil"
+    log_in: "Connexion"
+    logout: "Déconnexion"
+    logged_in_as: "Bonjour, %{username}!"
+    register: "fr Register"
+    create_user: "fr Create User"
+
+  flash:
+    survey_created: "Enquête créé avec succès"
+    survey_deleted: "Enquête supprimé"
+    survey_finalized: "%{survey_name} a été publié"
+    response_to_draft_survey: "Impossible d'ajouter la réponse. %{survey_name} n'est pas publié."
+    response_to_expired_survey: "Can't add response. %{survey_name} is past its expiry date."
+    not_authorized: "Vous n'êtes pas autorisé à le faire"
+    edit_finalized_survey: "Vous ne pouvez pas éditer un sondage publié"
+    publish_draft_survey: "fr You can't publish a draft survey"
+    unpublish_draft_survey: "fr You can't unpublish a non published survey"
+    sharing_draft_survey: "In french: You can't share an unpublished survey"
+    survey_shared: "In french: %{survey_name} has been shared"
+    user_not_selected: "In francais: You haven't selected any user to publish the survey to"
+    organizations_not_selected: "French: You haven't selected any organizations to share the survey with"
+    response_deleted: "La réponse a été supprimé"
+    denied_access: "fr Denied access to %{action} %{subject}"
+    survey_finalized: "fr The survey was finalized"
+    users_and_organizations_blank: "fr You have not selected any users or oganizations to publish to"
+    survey_published: "fr Survey Published!"
+    question_duplicated: "fr Question Duplicated successfully!"
+    question_duplication_failed : "fr Question duplication failed"
+    category_duplicated: "fr Category Duplicated successfully!"
+    category_duplication_failed : "fr Category duplication failed"
+    no_finalized_surveys: "Impossible d'effectuer une opération sur une enquête archivés"
+    survey_archived: "%{survey_name} a été archivé."
+    mr_duplicated: "Multi-enregistrement dupliqué avec succès!"
+
+  publication:
+    edit:
+      publish_survey: "fr Publish Survey"
+    unpublish:
+      unpublish_survey: "fr Unpublish Survey"
+      survey_users: "fr Survey users"
+
+  surveys:
+    confirm_finalize: "fr: The survey can't be edited after this. Are you sure?"
+    validations:
+      cant_be_in_past: "fr Can't be in the past"
+      too_long: "fr Can't be more than 250 characters"
+      invalid: "fr is not valid"
+      older_than_existing: "fr can not be older than existing value"
+
+    public_link:
+      copy_to_clipboard: "Copier dans le presse papier"
+      message: "Cette enquête peut être foule à un fournisseur via ce lien: "
+      ok_button_text: "Fait"
+      dialog_title: "Obtenez Foule Source référence"
+      copied: "Copié!"
+
+    new:
+      create_survey: "Créer un nouveau sondage"
+      add_single_line_question: "Ajouter une question simple ligne"
+      pick_question_type: "Choisissez Type de Question"
+      question_settings: "Paramètres"
+      untitled: "Sans Titre"
+      description: "Description"
+      survey_details: "Détails de l'enquête"
+      expiry_date: "Expire le"
+      content: "Contenu"
+      max_length: "Longueur maximale"
+      image: "Image"
+      mandatory: "Obligatoire"
+
+    index:
+      surveys: "Enquêtes"
+      welcome: "fr Welcome"
+      responses: "Réponse"
+      show: "Montrer"
+      finalized: "fr Finalized"
+      archived: "Archivés"
+      archive: "Archive"
+      drafts: "fr Drafts"
+      all: "Tous"
+      active: "Active"
+      expired: "Expired"
+      create: "Créer sondage"
+      delete: "Effacer"
+      publish: "Publier"
+      create_survey: "Créer Enquête"
+      unpublish: "Dépublier"
+      share: "Partager"
+      add_response: "Ajouter Réponse"
+      edit: "Modifier"
+      operations: "Opérations"
+      more: "plus"
+      less: "moins"
+      list_responses: "Liste Réponses"
+      duplicate: "Dupliquer"
+      reports: "Rapports"
+      no_surveys: "Il n'y a pas encore d'enquêtes."
+      crowd_source: "Recevoir le lien de la source de foule"
+      copied: "Copié!"
+      finalize: "fr Finalize"
+      description_part_1:
+        "fr - Data plays a significant part in designing social impact programs.
+        Social Surveys, Data collection drives and Demand aggregation are fundamental to operations of many citizen sector organizations.
+        Ashoka's technology framework and tools enable organizations use 'Data As Infrastructure' (DAI)."
+      description_part_2:
+        "fr - Organizations can get quality and variety of data through crowd sourcing, through organized surveys, marketing research.
+        Through 'DAI', we aim to help organizations in strategic decision making, and to achieve the right Insights, Interventions & Impact."
+
+    share:
+      share_survey: "Enquête Partager"
+
+    build:
+      build_survey: "Construire votre enquête"
+      add_radio_question: "Radio"
+      add_single_line_question: "de ligne unique"
+      add_multiline_question: "multilignes"
+      add_numeric_question: Numérique
+      add_date_question: "Date de"
+      add_multi_choice_question: "à choix multiples"
+      add_drop_down_question: "Laissez-vous tomber"
+      add_photo_question: "Photo"
+      add_rating_question: "Rating"
+      add_multi_record_category: "Enregistrement Multi"
+      pick_question_type: "Choisissez Type de Question"
+      question_settings: "Paramètres"
+      option: "Option"
+      category: "fr Category"
+      question_title: "Titre de la question"
+      multi_record_title: "Titre enregistrement multi"
+      save_survey: "Économiser de l'enquête"
+      delete_survey: "Delete de l'enquête"
+      finalize_survey: "fr Finalize and continue"
+      mark_identifier: "Marquer comme identifiant?"
+      mark_private: "Marquer comme privé?"
+      saving_your_survey_message: "Sauver votre enquête. S'il vous plaît ne fermez pas cette page"
+      loading_survey: "Chargement de votre enquête Veuillez patienter."
+      add_options_in_bulk_help_text: "Entrez une liste séparée par des virgules des options"
+      add_options_in_bulk_label: "Ajout d'options en vrac"
+
+    share_with_organizations:
+      share_survey: "In french: Share Survey and continue"
+
+    publish_to_users:
+      publish_survey: "In French: Publish Survey and continue"
+
+    duplicate:
+      survey_duplicated: Enquête dupliqué avec succès!
+      duplication_error: Une erreur s'est produite dupliquer l'enquête. Désolé!
+
+    report:
+      download_excel: fr Download Excel
+      location: fr Location Map
+      reports: fr Reports
+
+      total: "(Total: %{count})"
+  responses:
+    new:
+      response_for_survey: "Donner une réponse pour %{survey_name}"
+      response_saved: Réponse enregistrée avec succès
+      response_created: "Réponse créé avec succès!"
+
+    index:
+      list_of_responses: "fr List of Responses for %{survey_name}"
+      add_response: "Ajouter Réponse"
+      download_excel: "Télécharger Excel"
+      incomplete: Incomplet
+      complete: "Compléter"
+      added_by: "fr Added By"
+      last_updated_at: Dernière mise à jour A
+
+    edit:
+      delete: "Delete-fr"
+      edit: "Edit-fr"
+      edit_response: "Edit response-fr for"
+      error_saving_response: "La réponse économie erreur"
+      save_as_draft: "fr Save as Draft"
+      mark_as_complete: "fr Mark as Complete"
+      save_response: "fr Save Response"
+      location: "fr Location"
+      location_unavailable: "fr Location Unavailable"
+      errors_in_response: "Il semble y avoir quelques erreurs dans votre réponse. S'il vous plaît vérifier votre saisie et essayez à nouveau"
+
+      create_record: "Créer un autre dossier"
+
+      data_cleaning: "Nettoyage des Données"
+    excel:
+      excel_dialog_title: "Production Excel…"
+      excel_downloading_message: "Votre fichier Excel est généré se. Cette mght prendre quelques minutes. S'il vous plaît attendre."
+      settings: Réglages
+      include_private_fields: Inclure les champs privés
+
+  answers:
+    validations:
+      mandatory_question: Cette question est obligatoire.
+      max_length: Vous avez dépassé la durée maximale pour cette question.
+      exceeded_lower_limit: fr Your answer is lesser than the minimum value.
+      exceeded_higher_limit: fr Your answer is lesser than the maximum value.
+      exceeds_maximum_size: fr Your photo is bigger than the maximum size.
+      invalid_date: La date que vous avez donné n'est pas valide
+  questions:
+    validations:
+      min_value_higher: ne peut pas être supérieure à la valeur maximale
+
+  participating_organizations:
+    validations:
+      require_finalized: fr Must be finalized
+
+  survey_users:
+    validations:
+      require_finalized: fr Must be finalized
+
+  activerecord:
+    attributes:
+      survey:
+        name: "Nom"
+        expiry_date: "Expire le"
+        description: "Description"
+        copied: (de Copie)
+        archive: "fr (Archived)"
+        crowd_source: 'fr Crowd source'
+
+      question:
+        content: "Contenu"
+        max_length: "Longueur maximale"
+        max_size: Size maximale
+        image: "Image"
+        mandatory: "Obligatoire"
+        min_value: Valeur minimale
+        max_value: Valeur maximale
+
+      response:
+        location: "frlocation"
+
+  add_option: "Ajouter une option"
+# Library strings
+
+  formtastic:
+    actions:
+      create: "Créer %{model}"
+
+  will_paginate:
+    previous_label: "&#8592; Précédent"
+    next_label: "Suivant &#8594;"
+    page_gap: "&hellip;"
+
+  js:
+    untitled_survey: fr Untitled Survey
+    untitled_question: fr Untitled Question
+    untitled_category: fr Untitled Category
+    save_successful: fr Your survey was saved!
+    save_unsuccessful: fr We had trouble saving your survey.
+    first_option: fr First Option
+    second_option: fr econd Option
+    third_option: fr Third Option
+    questions_for: fr Questions for
+    require_csv_format: "S'il vous plaît entrer une liste séparée par des virgules des options.\nLe format fourni n'est pas valide."
+    reordering_questions: fr Reordering Questions
+    new_record_unsaved_warning: "Les modifications non enregistrées seront perdues si vous continuez. Continuer?"
+    confirm_add_question_to_finalized_survey: "Etes-vous sûr que vous voulez ajouter une question à un sondage finalisé? Cette action ne peut pas être annulée."
+    confirm_add_option_to_finalized_survey: "Etes-vous sûr que vous voulez ajouter une option à une enquête finalisée Cette action ne peut être annulée."
+    untitled_multi_record_category: "Untitled multi-enregistrement"
+
+  templates:
+    loading:
+      loading: "Chargement..."
+
+  date:
+    formats:
+      default: "%d %b, %Y"

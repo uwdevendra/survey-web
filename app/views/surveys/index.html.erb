@@ -1,0 +1,138 @@
+<% if user_currently_logged_in? %>
+  <div class="container">
+    <header id="backBtnContainer">
+      <h2 class="left"><%= t('.surveys') %></h2>
+      <% if can? :create, Survey %>
+        <%= link_to t(".create_survey"), surveys_path, :method => :post, :class => "Btn colrBtn right" %>
+      <% end %>
+      <a  class="searchBtn right"></a>
+    </header>
+    <div class="blue_tabs">
+      <ul class="filters tab-links">
+        <li><%= link_to t(".active"), surveys_path, :class => "#{'selected' unless params[:filter]}"%></li>
+        <li><%= link_to t(".expired"), surveys_path(:filter => "expired"), :class => "#{'selected' if params[:filter] == "expired"}" %></li>
+        <li><%= link_to t(".drafts"), surveys_path(:filter => "drafts"), :class => "#{'selected' if params[:filter] == "drafts"}"%></li>
+        <li><%= link_to t(".archived"), surveys_path(:filter => "archived"), :class => "#{'selected' if params[:filter] == "archived"}"%></li>
+      </ul>
+    </div>
+    <% if user_currently_logged_in? && @surveys.blank? %>
+      <p class="no-surveys"><%= t('.no_surveys') %></p>
+    <% end %>
+    <% if @surveys.present? && @organizations.present? %>
+      <div id="pager1" class="pager">
+      <%= will_paginate @surveys , :page_links => false %>
+        <div class="page_info">
+          <%= page_entries_info @paginated_surveys %>
+        </div>
+        
+        <!-- <form>
+          <select class="pagesize">
+            <option selected="selected"  value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option  value="40">40</option>
+          </select>
+          <input type="text" value="1-10 of 14" class="pagedisplay"/>
+          <%= image_tag "prev.svg" , class: "prev"  %>
+          <%= image_tag "next.svg" , class: "next"  %>
+        </form> -->
+        <div class="clear"></div>
+      </div>
+      <div class="survey-list-heading">
+        <ul>
+          <li class="rightBorder col01"><%= t ".title" %></li>
+          <li class="rightBorder col02"><%= t ".overview" %></li>
+          <li class="rightBorder col03"><%= t ".reports" %></li>
+          <li class="rightBorder col04"><%= t ".responses" %></li>
+          <!-- <li class="rightBorder col05"><%= t ".status" %></li>
+          <li class="rightBorder col06"><%= t ".users" %></li> -->
+          <li class="col07"><%= t ".end_date" %></li>
+          <ul>
+            <div class="clear"></div>
+          </div>
+          <% @surveys.each do |survey| %>
+            <div class="survey-row">
+              <div class="survey-info">
+                <ul>
+                  <li class="col01">
+                    <span class="radio-btn-wrapper">
+                      <input type="radio" id="survey-<%= survey.id %>" name="surveys" class="regular-radio survey-action-radio" />
+                      <label for="survey-<%= survey.id %>"></label>
+                    </span>
+                    <span class="survery-description">
+                      <span class="survey_name"><%= survey.name %></span>
+                      <span class="org_name"><%= survey.organization_name(@organizations) %></span>
+                      <p><%= survey.description %></p>
+                    </span>
+                  </li>
+                  <li class="col02">
+                    <%= link_to " ", survey_dashboard_index_path(survey.id),:class => "overview"  if can?(:view_survey_dashboard, survey) %>
+                  </li>
+                  <li class="col03">
+                    <%= link_to  " ", report_survey_path(survey.id), :class => "reports-link" if can?(:report, survey) && survey.finalized? && survey.has_responses? %>
+                  </li>
+                  <li class="col04">
+                    <%= link_to survey.responses_count(current_ability).to_s, survey_responses_path(survey.id), :class => survey.class_for_disabled  if can?(:read, survey) && survey.has_responses? %>
+                  </li>
+                  <!-- <li class="col05">
+                    <a href="#" >
+                      Active
+                    </a>
+                  </li> -->
+                  <!-- <li class="col06"> -->
+                    <%# survey.assinged_user_count(access_token) %>
+                  <!-- </li> -->
+                  <li class="col07">
+                    
+                      <%= I18n.localize(survey.expiry_date) %>
+                    
+                  </li>
+                </ul>
+                <div class="clear"></div>
+              </div>
+              <div class="survey-actions">
+                <ul class="listOf-survey-actions">
+                  <% if survey.archived? %>
+                    <%= render :partial => "archived_survey_responses", :locals => { :survey => survey } %>
+                  <% else %>
+                    <%= render :partial => "unarchived_survey_responses", :locals => { :survey => survey } %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <% unless user_currently_logged_in? %>
+      <div class="appListConatainer">
+        <header>
+          <h2 class="left"><%= t('.welcome') %></h2>
+        </header>
+        <div class="application_list">
+          <p><%= t('.description_part_1') %></p>
+          <p><%= t('.description_part_2') %></p>
+        </div>
+      </div>
+    <% end %>
+    <%= render "surveys/public_link_dialog" %>
+    <%= render "surveys/duplicate_dialog" %>
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $('a.disabled').click(function(){
+              return false;
+          });
+      
+          $('a.copy_public_link').click(function(){
+              new SurveyApp.PublicLinkDialog($(this).data('public-link')).open();
+          });
+      
+          $('a.duplicate').click(function(){
+            if(confirm("<%= t('.duplicate_confirm') %>")) {
+              new SurveyApp.DuplicateSurvey($("#survey-duplicate-dialog"), $(this).data('survey-id'));
+            }
+          });
+      
+          new SurveyApp.AddConfirmation($(".archive"));
+      });
+    </script>

@@ -1,0 +1,51 @@
+<% @top_surveys.each do |survey| %>
+  <div class="survey-row">
+    <div class="survey-info">
+      <ul>
+        <li class="col01">
+          <span class="radio-btn-wrapper">
+            <input type="radio" id="survey-<%= survey.id %>" name="surveys" class="regular-radio survey-action-radio" />
+            <label for="survey-<%= survey.id %>"></label>
+          </span>
+          <span class="survery-description">
+            <span class="survey_name"><%= survey.name %></span>
+            <span class="org_name"><%= survey.organization_name(@organizations) %></span>
+            <p><%= survey.description %></p>
+          </span>
+        </li>
+        <li class="col02">
+          <%= link_to " ", survey_dashboard_index_path(survey.id),:class => "overview"  if can?(:view_survey_dashboard, survey) %>
+        </li>
+        <li class="col03">
+          <%= link_to  " ", report_survey_path(survey.id), :class => "reports-link" if can?(:report, survey) && survey.finalized? && survey.has_responses? %>
+        </li>
+        <li class="col04">
+          <%= link_to survey.responses_count(current_ability).to_s, survey_responses_path(survey.id), :class => survey.class_for_disabled  if can?(:read, survey) && survey.has_responses? %>
+        </li>
+        <li class="col05">
+          <a href="#" >
+            Active
+          </a>
+        </li>
+        <li class="col06">
+          <%# survey.assinged_user_count(access_token) %>
+        </li>
+        <li class="col07">
+          <a href="#" >
+            <%= I18n.localize(survey.expiry_date) %>
+          </a>
+        </li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <div class="survey-actions">
+      <ul class="listOf-survey-actions">
+        <% if survey.archived? %>
+          <%# render :partial => "surveys/archived_survey_responses", :locals => { :survey => survey } %>
+        <% else %>
+          <%# render :partial => "surveys/unarchived_survey_responses", :locals => { :survey => survey } %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

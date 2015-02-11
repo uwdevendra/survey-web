@@ -1,0 +1,12 @@
+{{#allow_identifier}}
+  <div class="checkbox">
+    {{#identifier}}
+      <input type="checkbox" name="identifier" value="{{identifier}}" checked id="identifier{{id}}" class="regular-checkbox"></input>      
+    {{/identifier}}
+    {{^identifier}}
+      <input type="checkbox" name="identifier" value="{{identifier}}" id="identifier{{id}}" class="regular-checkbox"></input>
+    {{/identifier}}
+    <label for="identifier{{id}}"></label>
+    <span><%= t "surveys.build.mark_identifier" %></span>
+  </div>
+{{/allow_identifier}}

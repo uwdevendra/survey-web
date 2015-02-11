@@ -1,0 +1,47 @@
+class SurveyApp.PublicLinkDialog
+  constructor: (@url) ->
+    @dialog = $("#public-link-dialog")
+    @dialog.find(".spinner").css('display', 'block')
+    @dialog.find(".public-link-container").html("")
+    @dialog.find(".clipboard-button").text(I18n.t('surveys.public_link.copy_to_clipboard'));
+    @dialog.find(".clipboard-button").hide()
+
+    @dialog.find(".ok-button").click =>
+      @dialog.dialog('close')
+
+  open: =>
+    @dialog.dialog
+      modal: true
+      width: 400
+      height: 175
+      dialogClass: "no-close"
+
+    new SurveyApp.URLShortener().shorten(@url, @success, @failure)
+
+  success: (data) =>
+    @dialog.find(".clipboard-button").css('display', 'block')
+    @setup_clipboard()
+    @dialog.find(".spinner").hide()
+    @dialog.find(".public-link-container").html(@template(data.url))
+
+  failure: (data) =>
+    @dialog.find(".clipboard-button").css('display', 'block')
+    @setup_clipboard()
+    @dialog.find(".spinner").hide()
+    @dialog.find(".public-link-container").html(@template(@url))
+
+  template: (url) =>
+    I18n.t('surveys.public_link.message') + "<div class='public-link'><a href='#{url}'>#{url}</a></div>"
+
+  setup_clipboard: =>
+    @dialog.find(".clipboard-button").zclip
+      path: "assets/ZeroClipboard.swf"
+      copy: =>
+        @dialog.find(".public-link").text()
+      afterCopy: ->
+        cache = $(this).html()
+        $(this).text I18n.t("surveys.public_link.copied")
+        that = $(this)
+        setTimeout (->
+          that.html cache
+        ), 1500

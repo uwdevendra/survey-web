@@ -1,0 +1,378 @@
+ label{ display: inline-block; font-weight:500; /*margin-bottom: 5px;*/}
+
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="number"],
+select,
+textarea{
+ /* border: solid 1px $gray-light;
+  resize: none;
+  display: block;
+  width: 100%;*/
+}
+
+textarea{height: 160px;}
+
+div.checkbox, div.radio{
+  input{display: inline;}
+  label{display: inline;}
+}
+
+/*button{text-shadow:none;}
+button.Btn{border:0px;}*/
+
+button , input[type="submit"] , input[type="reset"] , input[type="button"] {text-transform : uppercase;
+    color: $peacockGreen-color ;
+    padding:10px 15px;
+    border:0px;
+    font-size: 14px;
+    @include border-radius(2px);
+    text-decoration: none;
+    display: inline-block;
+    color: $white-color;
+    text-shadow:none;
+    font-weight: 400;
+    background: $peacockGreen-color;
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+       -ms-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+           box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+
+     &:active , &:hover {background: $peacockGreen-hover-color ;}
+     &:focus {box-shadow:none;}
+     &:disabled  {color: #a1a1a1;
+     background: #dbdbdb;};
+}
+
+
+form{
+  @include clearfix;
+  padding-bottom: 20px;
+  label{ display: block; font-weight: 500; /*margin-bottom: 5px;*/}
+
+  input[type="text"],
+  input[type="password"],
+  input[type="search"],
+  input[type="email"],
+  input[type="number"],
+  select,
+  textarea{
+    border: 0px;
+    outline:none;
+    border-bottom: 2px solid #dedede;
+    color: $black-subheader;
+    font-size: 14px;
+    line-height:20px;
+    /*padding: 5px 0;*/
+    margin-top: 10px;
+    background: transparent;
+    -webkit-background: transparent;
+
+    &:focus {
+    border-bottom: 2px solid $peacockGreen-color;
+    box-shadow:0px 0px 0px ;
+    -webkit-box-shadow:0px 0px 0px;
+    -moz-box-shadow: 0px 0px 0px;
+    }
+  }
+
+  input[disabled="disabled"],
+  select[disabled="disabled"],
+  textarea[disabled="disabled"] {
+  border-bottom:0px;
+  /*opacity:0.4;*/
+  }
+  
+  textarea{height: 160px; padding: 0px;}
+  
+  #content{
+    h2, fieldset{ margin: 10px 20px;}
+    div{margin: 0;}
+  }
+  
+  ol{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li{
+      display: block;
+      margin: 0 0 10px 0;
+
+      input{width: 300px;}
+
+      &.boolean input, &.choice input{width: auto; margin-right: 4px;}
+    }
+  }
+
+  fieldset{
+    border: solid 1px $secondary-color-light;
+    margin: 6px 0;
+
+    legend{padding: 0 6px; margin: 6px 0 0 0; font-weight: bold;}
+  }
+
+  fieldset.actions{
+    display: block;
+    margin: 6px 0 10px 0; padding: 6px 0 0 0;
+    border: none;
+    /*border-top: solid 2px $secondary-color-light;*/
+    @include clearfix;
+
+    /*button{float: right;}*/
+  }
+
+  div{
+    input[type="text"],
+    input[type="password"],
+    input[type="search"],
+    input[type="email"],
+    select{
+     /* width: 100%;*/
+    }
+    
+    &.checkbox{
+      input{display: inline;}
+      label{display: inline;}
+    }
+    
+    &.date{
+      width: 30%;
+      
+      input{ width: 92%; }
+    }
+    
+    &.text_area{
+      width: 100%;
+      
+      textarea{ width: 98%; height: 200px;}
+    }
+    
+    span.hint{
+      display: block;
+      position: absolute;
+      bottom: 12px;
+      font-style: italic;
+      font-size: 12px;
+    }
+    
+    a.add{font-size: 12px; font-weight: bold;}
+    
+    div.user_type{
+      overflow: hidden;
+      padding-bottom: 30px;
+      label{display: inline;}
+    }
+
+    div.tags, div.languages{
+      height: 100px;
+      position: relative;
+      .tags_clear { clear: both; width: 100%; height: 0px; }
+      .not_valid {background: #FBD8DB !important; color: #90111A !important;}
+      input{width: 100px;}
+      div{margin: 0; padding: 0;}
+      div.field_with_errors{
+        width: 80%;
+        
+        div.tagsinput{width: 100% !important;}
+      }
+            
+      li{
+        display: block;
+        list-style: none;
+        float: left;
+        padding: 0 5px;
+        margin: 4px 4px 0 0;
+        background: $gray-xlight;
+        @include border-radius(4px);
+        cursor: pointer;
+
+        &:hover{ background: $gray-dark; color: $white; }
+  	    &.selected{
+  	      color: $gray-light;
+  	      background: none;
+  	      cursor: none;
+  	    }
+      }
+
+      div.categorized-tags, div.language-list{
+        display: block;
+        float: left;
+        width: 40px;
+        position: static;
+        padding: 0;
+        margin: 0;
+        
+        span{
+          display: block;
+          width: 24px;
+          height: 24px;
+          line-height: 28px;
+          padding: 0;
+          margin-left: 6px;
+          background: $gray-dark;
+          text-align: center;
+          color: $white;
+          
+          font-size: 30px;
+          font-weight: bold;
+          @include border-radius(4px);
+          cursor: pointer;
+        }
+        
+        ul{
+          display: none;
+          position: absolute;
+          width: 92%;
+          height: 160px;
+          overflow: auto;
+          top: -160px;
+          left: 1%;
+          z-index: 30;
+          padding: 1%;
+          
+          background: $white;
+          @include border-radius(4px);
+        }
+        
+        &.active ul{display: block;}
+      }     
+    }
+  }
+
+  #sidebar fieldset{
+    div{width: 100%;}
+    div.tags{
+      div.categorized-tags{width: 40px;}
+      div.categorized-tags ul{ top: 80px; display: none;}
+      div.categorized-tags.active ul{display: block; overflow: auto;}
+      div.tagsinput{ width: 80% !important;}
+    } 
+  } 
+  
+  div#errorExplanation, div#error_explanation{
+    padding: 1px;
+    color: $danger;
+    background: $highlight;
+    font-weight: 600;
+    
+    h2{display: none;}
+  }
+  
+  fieldset div.field_with_errors{
+      display: block; margin: 0; padding: 0; width: 100%;
+      
+      input[type="text"],
+      input[type="password"],
+      input[type="search"],
+      input[type="email"],
+      textarea,
+      select,
+      div.tagsinput{
+        border: solid 1px $danger;
+      }
+      
+      label{color: $danger;}
+  }
+
+  .form-actions{clear: both; border-top: solid 1px $secondary-color-light; @include clearfix; }
+  
+  div.sidebar{
+    h2{padding-top: 8px;}
+    ul{ margin: 0; padding: 0; list-style: none;}
+    input{ width: 90%; }
+  }
+}
+
+div.tags div.tagsinput{overflow-y: auto;}
+
+div.tagsinput {
+  border:1px solid #CCC;
+  background: #FFF; 
+  overflow-y: auto;
+  
+  span.tag{
+    @include border-radius(4px);
+    display: block;
+    float: left;
+    position: relative;
+    margin: 5px 0 0 5px;
+    padding: 2px 0 2px 4px;
+    line-height: 18px;
+    font-weight: 500;
+
+    background: $white;
+    color: $gray-dark;
+    border: solid 1px $gray-light;
+    
+    span{
+      display: inline-block;
+      height: 24px;
+      line-height: 24px;
+      float: left;
+    }
+    
+    a{float: right; padding: 0; margin: 0; }
+  }
+  
+  input {
+    width:80px;
+    margin: 4px 0 0 4px;
+    padding: 4px;
+    border: none;
+  }
+
+  div { display:block; float: left; } 
+}
+
+div.ui-datepicker-title{
+  select.ui-datepicker-month,
+  select.ui-datepicker-year{display: inline;}
+}
+
+.form-actions{
+  input, a{margin: 0 0 6px 12px;}
+}
+
+/*NEW STYLE*/
+/*CHECKBOX STYLE START*/
+
+
+/*label {
+    display: inline;
+}*/
+
+.regular-checkbox {
+    display: none;
+}
+
+.regular-checkbox + label {
+    background-color: $white-color;
+    border: 2px solid #737373;   
+    padding: 8px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+}
+
+.regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+}
+
+.regular-checkbox:checked + label {
+    background-color: $blue;
+    border: 2px solid $blue;
+    color: #99a1a7;
+}
+
+.regular-checkbox:checked + label:after {
+    content: '\2713';
+    font-size: 16px;
+    position: absolute;
+    top: -1px;
+    left: 2px;
+    color: $white-color;
+}
+
+/*checkbox style ends*/

@@ -1,0 +1,80 @@
+<%= content_for :body_attributes do %>
+  id="publish"
+<% end %>
+<%#= render "layouts/status_bar", :status => "publish" %>
+<div class="container">
+  <header id="backBtnContainer">
+    <h2 class="left">
+      <a class="backBtn" id="backBtn"></a>
+      <span>
+        <%= t ".unpublish_survey" %>
+      </span>
+    </h2>
+  </header>
+  <%= semantic_form_for @survey, :url => survey_publication_path(@survey.id), :method => :delete do |f| %>
+    <div class="survey_publish_heading">
+      <h5 class="left"><%= @survey.name %><!-- Temperature details as per city --></h5>
+      <div class="survey_expiryDate">
+        <!-- Expires on - 2014-08-31 -->
+        <%= f.input :expiry_date, :as => :string, :required => true, :input_html => { :value => @survey.expiry_date, :class => 'expiry-date' } %>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="publish-to-users">
+      <% if @unpublished_users.present? %>
+        <div class="publish-to-heading">
+          <h4><%= t ".survey_users" %></h4>
+          <!-- <div id="pager1" class="pager">
+            <h5 class="left"><%= t ".unpublished_users" %></h5>
+            
+              <select class="pagesize">
+                <option selected="selected"  value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option  value="40">40</option>
+              </select>
+              <input type="text" value="1-10 of 14" class="pagedisplay"/>
+              <%= image_tag "prev.svg" , class: "prev"  %>
+              <%= image_tag "next.svg" , class: "next"  %>
+            
+          </div> -->
+        </div>
+        <div class="list-of-published-users">
+          <ol class="published">
+            <% @unpublished_users.each do |user| %>
+              <li>
+                <%= user.name %>
+              </li>
+            <% end %>
+          </ol>
+          <div class="clear"></div>
+        </div>
+      <% end %>
+      <div class="publish-to-heading">
+        <!-- <div id="pager1" class="pager">
+          <h5 class="left">Choose users to unpublish to</h5>
+          
+            <select class="pagesize">
+              <option selected="selected"  value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option  value="40">40</option>
+            </select>
+            <input type="text" value="1-10 of 14" class="pagedisplay"/>
+            <%= image_tag "prev.svg" , class: "prev"  %>
+            <%= image_tag "next.svg" , class: "next"  %>
+          
+        </div> -->
+      </div>
+      <div class="list-of-users-to-unpublish">              
+          <%= f.input :user_ids, :as => :custom_check_boxes, :collection => @published_users, :member_label => Proc.new { |user| user.name }, :label => "" %>        
+      </div>
+    </div>
+    <%= f.actions do %>
+    <ul class="unpublish-survey-button">
+      <%= f.action :submit, :as => :button , :label => t('.unpublish_survey') , :button_html => {:class => "Btn colrBtn"}%>
+      </ul>
+      <div class="clear"></div>
+    <% end %>
+  <% end %>
+</div>

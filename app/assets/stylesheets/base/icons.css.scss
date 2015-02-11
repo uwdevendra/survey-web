@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "FontAwesome";
+  src: image-url('font/fontawesome-webfont.eot');
+  src: image-url('font/fontawesome-webfont.eot?#iefix') format('eot'), image-url('font/fontawesome-webfont.woff') format('woff'), image-url('font/fontawesome-webfont.ttf') format('truetype'), image-url('font/fontawesome-webfont.svg#FontAwesome') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+a.delete_question, a.delete_category {
+  display: block;
+  position: relative;
+  float: right;
+  width: 22px;
+  height: 22px;  
+  @include border-radius(2px);
+  background: transparent image-url('rubbish.svg') no-repeat center center;
+  overflow: hidden;
+  background-size: 24px;
+  margin-left: 5px;
+  padding: 5px;
+  &:hover {
+    background: #fff image-url('rubbish.svg') no-repeat center center;
+    background-size: 24px;
+}
+}
+a.copy_question {
+ display: block;
+  position: relative;
+  float: right;
+  width: 22px;
+  height: 22px;  
+  @include border-radius(2px);
+  background: transparent image-url('copy.svg') no-repeat center center;
+  overflow: hidden;
+  background-size: 19px;
+  padding: 5px;
+  margin-left: 5px; 
+  &:hover{
+    background: #fff image-url('copy.svg') no-repeat center center;
+    background-size: 19px;
+  }; 
+}
+a.setting {
+  display: block;
+  position: relative;
+  float: right;
+  width: 22px;
+  height: 22px;  
+  @include border-radius(2px);
+  background: transparent image-url('settings.svg') no-repeat center center;
+  overflow: hidden;
+  background-size: 24px;
+  margin-left: 5px;
+  padding: 5px;
+
+  &:hover{
+    background: #fff image-url('settings.svg') no-repeat center center;
+    background-size: 24px;
+  }; 
+
+  &:active{
+    background: #fff;
+    @include border-radius(2px);
+  }; 
+ 
+}

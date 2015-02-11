@@ -1,0 +1,39 @@
+<surveyquestion id="{{id}}">
+<%= render "templates/dummies/finalized_icon" %>
+<a href="javascript:void(0)" class="delete_category">delete</a>
+<a href="javascript:void(0)" class="copy_question" >Copy</a>
+<a href="{{duplicate_url}}" class="copy_question_hidden" data-method="post">Copy</a>
+<div class="collapse_category">&#9660;</div>
+<div class="inline_errors">{{errors}}</div>
+<span>{{question_number}})</span>
+<label>
+  {{content}}
+</label>
+
+<div>
+  <label><%= t("surveys.build.category_title") %> </label>
+  <input type="text" name="content" value="{{content}}"></input>
+</div>
+
+{{#id}}
+  <div>
+    <%= render 'templates/question_types_dropdown' %>
+    <!-- <button class='add_sub_question' href='#'>Add Sub-Question</button> -->
+    <a class='add_sub_question' href='#'>Add Sub-Question</a>
+  </div>
+
+  <div>
+    <button class='add_sub_category' data-type="" href='#'>Add Sub-Category</button>
+  </div>
+
+  {{^has_multi_record_ancestor}}
+    <div>
+      <button class='add_sub_multi_record' data-type="MultiRecordCategory" href='#'>Add Sub-MultiRecord</button>
+    </div>
+  {{/has_multi_record_ancestor}}
+{{/id}}
+{{^id}}
+  <%= render 'templates/loading' %>
+{{/id}}
+<%= render "templates/questions/category_finalized_message" %>
+

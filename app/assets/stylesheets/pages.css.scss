@@ -1,0 +1,628 @@
+
+/***********DASHBOARD STYLE**********/
+.dashboard-wrapper {
+    width: 960px;
+    margin: 15px auto 50px auto;
+    header {
+        h2{
+        margin-top: 0px;
+    }
+    }
+    .table_list td{font-size: 13px; padding: 15px 15px; vertical-align: top;}
+    .survey_name {color: $black-subheader; display: block;}
+    .org_name {font-size: 12px; display: block;}
+}
+.left-sideBar {
+    width: percentage(242px / 970px);
+    margin-right:percentage(15px / 970px);
+    float: left;   
+}
+
+.main-content {
+    width: percentage(713px / 970px);
+    background: $white-color;
+    @include border-radius(2px);
+    min-height: 400px;    
+    float: right;
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+.reports-link {
+    display: block;
+    width: 22px;
+    height: 22px;
+    background: transparent image-url('surveyReport.svg') no-repeat left top;
+    &:active{
+        background: transparent image-url('surveyReportActive.svg') no-repeat left top;
+    };
+} 
+.org-shortInfo {
+    background: $white-color;
+    @include border-radius(2px);
+    padding: 10px 15px;  
+    font-size: 12px;  
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+
+    h1{
+        font-size: 18px;
+        font-weight: 500;
+        color: $orange-title-color;
+        margin: 0 0 10px 0;
+    }
+}
+.org-dashboard-logo {
+	border: 1px solid #f3ebdb;
+	padding: 5px 5px;
+	text-align: center;
+	img {max-width: 60%;}
+}
+.org-edit {
+    padding: 5px 10px;
+    text-align: right;
+    border-top: 1px solid #e0e0e0;
+    margin: 0 -15px -10px -15px;
+    a{display: inline-block;}
+}
+.Survey-summary { 
+    margin: 10px 0 0 0;
+    padding: 1px 0 0 0;   
+    width: 100%;
+        background: #4dd0e1;
+        margin-bottom: 10px;
+        margin-right: 2px;
+        color: #3e8791;
+        @include border-radius(2px);
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+           -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            -ms-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+                box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    table{
+        width: 100%;
+        border: 0px;
+        margin: 10px 0;
+        td{
+            padding: 5px 15px 5px 15px;
+            span{
+                font-weight: 500;
+                color: #1a2b32;
+                font-size: 24px;
+            }
+        }
+    }                
+}
+
+.survey-create {
+    padding: 5px 10px 5px 15px;
+    margin-top: 10px;
+    text-align: right;
+    border-top: 1px solid #44b7c6;   
+    a{display: inline-block;}
+    span{line-height: 22px; color: $white-color;}
+}
+
+.Users-summary { 
+    margin: 10px 0 0px 0; 
+    padding: 1px 0 0 0;  
+    width: 100%;
+        background: #4de1a8;
+        margin-bottom: 10px;
+        margin-right: 2px;
+        color: #38a078;
+        @include border-radius(2px);
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+           -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            -ms-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+                box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    table{
+        width: 100%;
+        border: 0px;
+        margin: 10px 0;
+        td{
+            padding: 5px 15px 5px 15px;
+            span{
+                font-weight: 500;
+                color: #1a2b32;
+                font-size: 24px;
+            }
+        }
+    }                
+}
+
+.user-create{
+    padding: 5px 10px 5px 15px;
+    margin-top: 10px;
+    text-align: right;
+    border-top: 1px solid #47d09b;   
+    a{display: inline-block;}
+    span{line-height: 22px; color: $white-color;}
+}
+
+.SpaceWrapper{
+    width: 100%;
+    margin-top: 20px;          
+
+    .spaceBar{
+        background: #dedede;
+        height: 5px;
+        width: 100%;
+        margin: 5px 0;
+        @include border-radius(10px);
+        overflow: hidden;
+        .utilisedSpace {
+            height: 5px;
+            width: 40%;
+            background: #ffb452;
+        }
+    }
+}
+
+
+
+/******LIST OF RESPONSES STYLE********/
+.responses-list-heading , .responce-row {
+    li{width: 142px;}
+}
+
+
+/****** SURVEY BUILDER ********/
+.builder-survey-info {
+    clear: both;
+    padding: 0px 15px 15px 15px;
+    .builder-survey-name-info {
+        float: left;
+        width: 63%;
+        input[type="text"]{display: block; font-size: 16px; color:$black-subheader; font-weight: 500;}
+        textarea{display: block; width:100%; height:65px;}
+    }
+}
+
+.survey-builder {padding: 15px; clear: both;}
+.addQuestion {clear: both; position: relative; margin-bottom: 250px; padding: 15px; display: inline-block;}
+
+.add-question-btn {
+    display: inline-block;
+    float: left;
+    border: 1px solid #e0e0e0;
+    padding: 13px;    
+    background: transparent image-url('addQuestion.svg') no-repeat left top;
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+       -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        -ms-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+.addQuestionText {display: block; float: left; line-height: 30px; margin-left: 10px;}
+.addQuestionText:before{
+    content: "\f060";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+}
+
+.add-question-btn.minusImg{
+    background: transparent image-url('minus.svg') no-repeat left top;
+}
+
+.question-types {
+    position: absolute;
+    border: 1px solid #e0e0e0;
+    background: $white-color;
+    width: 264px;
+    padding: 10px 15px;
+    margin: 0px 0 0 27px;
+    z-index:9;
+    display: none;
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+       -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        -ms-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    ul{
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+        li{
+            display: block;
+            width: 122px;
+            padding: 7px 5px;
+            float: left;
+            label, input{float: left;}
+            span{margin-left: 8px; line-height: 20px;}
+
+        }
+    }
+.addBtn {border: 0px;
+    background: none;
+    outline:none;
+    &:active{
+        background: #dddddd;
+        color: $peacockGreen-color;
+    };
+        }    
+}
+.show{display: block;}
+.question-row {
+    display: block;
+    /*overflow: hidden;*/
+    clear: both;
+    margin: 0px 0 10px 0;
+    border: 1px solid #e0e0e0;
+    padding: 10px 10px 0px 10px;
+    background: $extreme-light-gray;   
+    .question-container {
+        /*position: relative;*/
+        display: block;
+        margin: -10px -10px 0px -10px;  
+        background: #eeeeee;
+        padding: 5px 15px;
+        font-weight: 500;
+        z-index: 0;
+        input{color: $black-subheader; font-weight: 500;}      
+    }    
+
+    .question-container:after {
+        content: '.';
+        display: block;
+        height: 0px;
+        clear: both;
+        font-size: 0px;
+
+    }
+    .question_options{
+        padding: 15px 15px;
+    }
+    .questionWrp {
+        float: left;
+        width: 660px;
+        padding: 9px 0 9px 15px;
+        margin: -5px 0 -5px -15px;
+        input{margin-top:0px; width:75%;}
+    }
+    .children-content{
+        padding: 10px 0px 10px 0px; 
+        &:after{
+        content: '.';
+        display: block;
+        height: 0px;
+        clear: both;
+        font-size: 0px;
+        };       
+    }
+    .thumb {float: right;}   
+}
+img.thumb {
+  /*width: 120px;*/
+  width: 13%;
+  max-height: 120px;
+  float: right;
+  border:3px solid #fff;
+  -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+       -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+        -ms-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+
+}
+
+.no-of-characters {
+    label{
+        display: inline-block;
+        float: left;
+        margin-right: 10px;
+    }
+    input[type="number"]{margin: 0px; line-height: 22px;}
+}
+.add-in-bulk{
+    clear: both;
+    input[type="text"]{ margin-right: 10px;}
+}
+.option {
+    clear: both;
+    padding:10px 0 5px 0;
+    input, label {float: left; margin-right: 10px; margin-top: 3px;}
+    span.label{border-bottom: 2px solid #dedede;}
+}
+
+.icon-btns {/*padding:3px 5px;*/
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    @include border-radius(2px);
+    border:1px solid #e0e0e0;
+    background-color: $dark-gray-background;
+    margin-left: 10px;
+
+    &:active {background-color: $white-color}
+}
+.add-option {background: transparent image-url('addQuestion.svg') no-repeat left top;}
+.add-option.minusImg {background: transparent image-url('minus.svg') no-repeat left top;}
+.delete-option {background: transparent image-url('rubbish.svg') no-repeat left top;}
+
+.sub-question {margin: 20px 0;}
+.formwidget-container-editor {    
+        -webkit-box-shadow: 1px 0 10px 1px rgba(0, 0, 0, 0.3);
+           -moz-box-shadow: 1px 0 10px 1px rgba(0, 0, 0, 0.3);
+            -ms-box-shadow: 1px 0 10px 1px rgba(0, 0, 0, 0.3);
+                box-shadow: 1px 0 10px 1px rgba(0, 0, 0, 0.3);
+}
+.form-top-right-actions {
+    display: none;
+    float: right;
+    width: 180px;
+    text-align: right;
+.action{
+    padding:3px 5px;
+    display: inline-block;
+    margin-left: 10px;
+    img {/*width:20px;*/ height: 20px;}
+    &:active {background: $white-color}    
+}
+
+.settingOptionsWrp {
+  display: block;
+  position: relative;
+  float: right;
+  width: 32px;
+  height: 32px;      
+  background-size: 24px;
+  margin-left: 15px;
+
+}
+.settingOptionsWrp.active{
+    background: $white-color;
+  @include border-radius(2px);
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        -ms-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.setting-options {
+    display: none;
+    width: 120px;
+    background: #fff;
+    position: absolute;
+    top: 29px;
+    right: 0px;
+    z-index: 9;
+    text-align: left;
+    padding: 15px;
+    @include border-radius(2px);
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        -ms-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    input.regular-checkbox{display: none;}
+    }
+.setting-options.active{display: block;}    
+
+.checkbox:first-child{margin-top: 0px;}
+.checkbox {
+        margin-top: 10px;
+        label{font-weight: 400; margin-right: 10px;}
+    }  
+}
+
+.survey_sideInfo {
+    float: right;
+    text-align: right;
+    width: 300px;
+    position: relative;
+}
+.questionBox {
+    background:#4dd0e1;
+    float: right;
+    width: 210px;
+    text-align: left;
+    color: $peacockGreen-color;
+    header{color: $white-color;
+padding: 7px 0 7px 20px;
+border-bottom: 1px solid #44b7c6;}
+
+table{width: 100%; border: 0px;
+        td{border: 0px;
+           padding: 10px 0 10px 20px;
+           span{font-weight: 600;
+            color: #1a2b32;
+            font-size: 17px;}
+       }
+}
+
+}
+.expiresOn {
+    padding-bottom: 10px;
+    li{display: inline; list-style-type: none;}
+}
+
+.collapseAll-btn {
+display: block;
+margin-top: 20px;
+font-size: 15px;
+position: absolute;
+right: 10px;
+bottom: -45px;
+&:after{
+    content: "\f077";
+    color: #bdbdbd;
+    font-size: 18px;
+    margin-left: 15px;
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+}
+}
+
+.collapseAll-btn.collapsed{
+    &:after{
+    content: "\f078";
+}
+}
+
+div.add_options_in_bulk_wrp {
+    padding:10px;    
+    textarea.add_options_in_bulk {
+        height: 60px; 
+        width: 250px; 
+        float: left; 
+        padding: 0px; 
+        margin-right: 10px;
+        margin-top: 0px;
+    }
+    a {margin-top: 24px}
+}
+.radio-option-row {
+    display: block;
+    padding: 10px;
+    input.option{margin-top: 0px; padding:0px;}
+    select{margin-top: 0px;}
+}
+.add-subQuestion {
+    display: inline-block; 
+    padding: 0px; 
+    margin-bottom: 0px;
+    .question-types {margin: 0px 0 0 31px;}
+}
+.option-wrp {
+    padding: 10px 0;
+    input.option{margin-top: 0px; padding: 0px 0 0px 0;}
+}
+.ref_img {
+  display: block;
+  position: relative;
+  float: right;
+  width: 32px;
+  height: 32px;      
+  background-size: 24px;
+  margin-left: 5px;
+  .upload_files{                                    
+                display: block;
+                width: 32px;
+                height: 32px;
+                position: relative;
+                float: right;                                
+                cursor: pointer;                
+                overflow: hidden;                
+            input[type="file"]{       
+            opacity: 0;
+            font-size: 100px;
+            top: 0px;
+            right: 0px;
+            cursor: pointer;
+            position: absolute;
+            }
+
+            &:hover{
+                background: #fff;
+                background-size: 22px;
+            }; 
+
+            .upload-icon {
+                display: inline-block;
+                background: transparent image-url('photo.svg') no-repeat center center;
+                background-size: 22px;   
+                width: 22px;
+                height: 22px;
+                cursor: pointer;
+                padding: 5px;
+                
+                &:active{
+                    background: #fff image-url('photo.svg') no-repeat center center;
+                    background-size: 24px;
+                };
+
+            }
+  }
+}
+surveyquestionchild {
+    width: 100%;    
+    display: block;
+}
+.photo-img-wrp {
+    border:2px dashed #c5c3c3;
+    float: left;
+    height: 122px;
+    /*width: 750px;*/
+    width:84%;
+    margin-bottom: 15px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;    
+    input {
+        font-size: 120px; 
+        position: absolute; 
+        top: 0px; 
+        right: 0px;
+        /*opacity: 0.0;*/
+    }
+    span{
+        display: block;
+        width: 100%;
+        height: 42px;
+        padding-top: 80px;
+        text-align: center;
+        font-size: 16px;
+        background: transparent image-url('camera.svg') no-repeat center 37px;
+        background-size: 40px;
+    }
+}
+.option-wrp {
+    input[type="checkbox"]{display: none;}
+    input[type="radio"]{display: none;} 
+    .qn_no {display: block; float: left; margin-right: 10px; line-height: 22px; margin-top: 5px;}    
+    input.option {clear: none; float: left; margin-top: 4px;}
+    .regular-checkbox + label {margin-right: 10px; margin-top: 3px;} 
+    /*.icon-btns {width: 24px; height: 24px;}*/
+}
+.radio-option-row {
+    input[type="checkbox"]{display: none;}
+    input[type="radio"]{display: none;} 
+    .qn_no {display: block; float: left; margin-right: 10px; line-height: 22px; margin-top: 5px;}    
+    input.option {clear: none; float: left; margin-top: 4px;}
+    .regular-radio + label {margin-right: 10px; margin-top: 3px;} 
+    /*.icon-btns {width: 20px; height: 20px;}*/
+}
+.icon-btns {width: 20px; height: 20px;}
+.question-row{
+    .question-row{
+        .question-row{margin: 0px -5px;}
+    }
+}
+.survey_option_btns {
+    .hidden {visibility: hidden; width:1px; height: 1px; padding: 0px; margin: 0px;}
+    form{float: right;}
+}
+/*button{
+    span.ui-icon-closethick {display: none;}
+    span.ui-button-text {display: none;}
+}*/
+img[src=""] {display: none;}
+
+.finalisedLock {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: transparent image-url('lock.svg') no-repeat left top; 
+    background-size: 17px; 
+    float: right;
+    margin-top: 6px;
+}
+.star {padding: 10px 0;}
+ul.error{margin: 0px; padding: 0px;}
+ul.errors {margin: 0px; padding: 0px;
+    li{
+        width: 884px;
+        padding-right: 20px;
+        background: transparent url('errorIcon.png') no-repeat right center;
+        color: $errorRed-color;
+    }
+}
+.inline-hints {color: #000;}
+.record .question{margin-left: 0px;}
+.responce_actions li{display: inline-block; margin-right: 5px;}
+.error-message {color: $errorRed-color; padding: 0px 0 10px 0;}

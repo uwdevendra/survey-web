@@ -1,0 +1,373 @@
+en:
+  application_title: "Survey Application"
+  confirm: "Are you sure?"
+  login_again: Your session has expired. Please login again.
+  skip: "Skip"
+
+  header:
+    home: "Home"
+    log_in: "Log In"
+    logout: "Log Out"
+    logged_in_as: "%{username}"
+    register: "Register"
+    organization: "Organization"
+    create_user: "Create User"
+    dashboard: "Dashboard"
+    create_survey: "Surveys"
+
+  flash:
+    survey_created: "Survey created successfully"
+    survey_deleted: "Survey deleted"
+    survey_finalized: "%{survey_name} has been finalized"
+    response_to_draft_survey: "Can't add response. %{survey_name} is not finalized."
+    response_to_expired_survey: "Can't add response. %{survey_name} is past its expiry date."
+    not_authorized: "You are not authorized to do that"
+    edit_finalized_survey: "You can't edit a finalized survey"
+    publish_draft_survey: "You can't publish a draft survey"
+    unpublish_draft_survey: "You can't unpublish a non published survey"
+    sharing_draft_survey: "You can't share an draft survey"
+    survey_shared: "%{survey_name} has been shared"
+    user_not_selected: "You haven't selected any user to publish the survey to"
+    organizations_not_selected: "You haven't selected any organizations to share the survey with"
+    response_deleted: "The response was deleted"
+    denied_access: "Denied access to %{action} %{subject}"
+    users_and_organizations_blank: "You have not selected any users or oganizations to publish to"
+    survey_published: "Survey Published!"
+    question_duplication_failed : "question_duplication_failed"
+    question_duplicated: "Question Duplicated successfully!"
+    question_duplication_failed : "Question duplication failed"
+    category_duplicated: "Category Duplicated successfully!"
+    category_duplication_failed : "Category duplication failed"
+    survey_archived: "%{survey_name} has been archived."
+    mr_duplicated: "Multi-Record Duplicated successfully!"
+
+  publication:
+    edit:
+      publish_survey: "Publish Survey"
+      published_to_users: "Publish to users"
+      thank_you_message: "Thank you for participating in the survey."
+    unpublish:
+      unpublish_survey: "Unpublish Survey"
+      survey_users: "Survey users"
+
+  organization_dashboards:
+    index:
+      heading: Dashboard
+      active: Active
+    show:
+      heading: Dashboard for %{organization_name}
+      asset_space: asset space
+      active: Active
+      expiring_soon: Expiring Soon
+      all_surveys : All surveys
+      title: Title
+      overview: Overview
+      responses: Responses
+      reports: Reports
+      status: Status
+      users: Users
+      end_date: End date
+      description: Description
+      users: Users
+      user: User
+
+  surveys:
+    confirm_finalize: "The survey can't be edited after this. Are you sure?"
+    duplication_in_progress: "Survey duplication in progress…"
+    duplication_dialog_title: "Duplicating Survey..."
+
+    validations:
+      cant_be_in_past: "Can't be in the past"
+      invalid: "is not valid"
+      older_than_existing: "can not be older than existing value"
+
+    public_link:
+      copy_to_clipboard: "Copy to clipboard"
+      message: "This survey can be crowd-sourced using this link: "
+      ok_button_text: "Done"
+      dialog_title: "Get Crowd Source Link"
+      copied: "Copied!"
+
+    new:
+      create_survey: "Create a new survey"
+      add_single_line_question: "Add a single line Question"
+      pick_question_type: "Pick Question"
+      question_settings: "Settings"
+      untitled: "Untitled"
+      description: "Description"
+      survey_details: "Survey Details"
+      expiry_date: "Expires on"
+      content: "Content"
+      max_length: "Maximum Length"
+      image: "Image"
+      mandatory: "Mandatory"
+
+    index:
+      surveys: "Surveys"
+      welcome: "Welcome"
+      responses: "Response"
+      show: "Show"
+      finalized: "Finalized"
+      archived: "Archived"
+      drafts: "Drafts"
+      all: "All"
+      active: "Active"
+      expired: "Expired"
+      create_survey: "Create survey"
+      delete: "Delete"
+      publish: "Publish"
+      unpublish: "Unpublish"
+      archive: "Archive"
+      share: "Share"
+      add_response: "Add Response"
+      edit: "Edit"
+      operations: "Operations"
+      more: "more"
+      less: "less"
+      list_responses: "List Responses"
+      duplicate: "Duplicate"
+      reports: "Reports"
+      no_surveys: "There are no surveys yet."
+      crowd_source: "Get crowd source link"
+      copied: "Copied!"
+      finalize: "Finalize"
+      duplicate_confirm: "Are you sure you want to duplicate this survey?"
+      description_part_1:
+        "Data plays a significant part in designing social impact programs.
+        Social Surveys, Data collection drives and Demand aggregation are fundamental to operations of many citizen sector organizations.
+        Ashoka's technology framework and tools enable organizations use 'Data As Infrastructure' (DAI)."
+      description_part_2:
+        "Organizations can get quality and variety of data through crowd sourcing, through organized surveys, marketing research.
+        Through 'DAI', we aim to help organizations in strategic decision making, and to achieve the right Insights, Interventions & Impact."
+      create_survey: "Create Survey"
+      title: Title
+      overview: Overview
+      responses: Responses
+      reports: Reports
+      status: Status
+      users: Users
+      end_date: End date
+
+
+      survey_dashboard: "Dashboard"
+    share:
+      share_survey: "Share"
+
+    build:
+      build_survey: "Build your survey"
+      add_radio_question: "Radio"
+      add_single_line_question: "Single Line"
+      add_multiline_question: "Multiline"
+      add_numeric_question: "Numeric"
+      add_date_question: "Date"
+      add_multi_choice_question: "Multi-choice"
+      add_drop_down_question: "Drop Down"
+      add_photo_question: "Photo"
+      add_rating_question: "Rating"
+      add_multi_record_category: "Multi Record"
+      pick_question_type: "Pick Question"
+      question_settings: "Settings"
+      pick_question_type: "Pick Question"
+      question_settings: "Settings"
+      option: "Option"
+      category: "Category"
+      question_title: "Question Title"
+      multi_record_title: "Multi Record Title"
+      save_survey: "Save Survey"
+      delete_survey: "Delete Survey"
+      finalize_survey: "Publish"
+      survey_finalized: "The survey was finalized"
+      mark_identifier: "identifier"
+      mark_private: "private"
+      saving_your_survey_message: "Saving your survey. Please don't close this page."
+      loading_survey: "Loading your survey. Please wait."
+      add_options_in_bulk_help_text: "Enter a comma separated list of options"
+      add_options_in_bulk_label: "Add Options in Bulk"
+      category_finalized: This category has been published.
+      question_finalized: This question has been published.
+      option_finalized: This option has been published.
+
+    share_with_organizations:
+      share_survey: "Share Survey and continue"
+
+    publish_to_users:
+      publish_survey: "Publish and continue"
+
+
+    report:
+      location: Location Map
+      download_excel: Download Excel
+      reports: Reports
+
+      total: "(Total: %{count})"
+
+  responses:
+    new:
+      response_for_survey: "Give a response for %{survey_name}"
+      response_saved: "Response successfully saved"
+      response_created: "Response successfully created!"
+
+    index:
+      add_response: Add response
+      download_excel: Download Excel
+      incomplete: Incomplete
+      complete: Complete
+      list_of_responses: "List of Responses for %{survey_name}"
+      added_by: Added by
+      last_updated_at: Last Updated At
+
+      no_answer_present: "<no answer>"
+    edit:
+      delete: "Delete"
+      edit: "Edit"
+      edit_response: "Edit response for"
+      error_saving_response: "Error saving response"
+      save_as_draft: "Save as Draft"
+      mark_as_complete: "Mark as Complete"
+      save_response: "Save Response"
+      location: "Location"
+      location_unavailable: "Location Unavailable"
+      create_record: "Create Another Record"
+      data_cleaning: "Data Cleaning"
+      errors_in_response: "There seem to be some errors in your response. Please check your input and try again."
+
+    excel:
+      from_date: "From"
+      to_date: "To"
+      generate_excel: "Download Excel Archive"
+      cancel: "Cancel"
+      excel_dialog_title: "Generating Excel Archive…"
+      excel_downloading_message: "Your excel archive is being generated.\nThis might take a few minutes. Please wait."
+      settings: Settings
+      include_private_fields: Include Private Fields
+      excel_password_dialog_title: "Generated Excel Archive"
+      excel_password_message: "Your archive has been generated, and should begin downloading shortly. You can use the following password to unlock it:"
+      public_response_tag: "<public>"
+
+  answers:
+    validations:
+      mandatory_question: This question is mandatory.
+      max_length: You have exceeded the maximum length for this question.
+      exceeded_lower_limit: Your answer is lesser than the minimum value.
+      exceeded_higher_limit: Your answer is greater than the maximum value.
+      exceeds_maximum_size: Your photo is bigger than the maximum size.
+      invalid_date: The date you gave is not valid
+
+  participating_organizations:
+    validations:
+      require_finalized: Must be finalized
+
+  survey_users:
+    validations:
+      require_finalized: Must be finalized
+
+  activerecord:
+    models:
+      survey: survey
+      response: response
+      user: user
+    attributes:
+      survey:
+        name: "Name"
+        expiry_date: "Expires on"
+        description: "Description"
+        copied: "(Copy)"
+        archive: "(Archived)"
+        crowd_source: 'Crowd source'
+
+      question:
+        content: "Content"
+        max_length: "Maximum Length"
+        max_size: Maximum Size
+        image: "Image"
+        mandatory: "Mandatory"
+        min_value: Minimum value
+        max_value: Maximum value
+
+      response:
+        location: "Location"
+    errors:
+      models:
+        survey:
+          finalize_before_archive: "The survey must be finalized before archiving"
+          must_not_be_archived: "Can't archive an archived survey"
+        question:
+          attributes:
+            survey_id:
+              draft_survey: "Can't perform this action on a question belonging to a finalized survey."
+          not_allowed: "is not allowed to change for a finalized question"
+          min_value_higher: can't be greater than maximum value
+        answer:
+          should_be_finalized: "must be finalized"
+
+        response:
+          incomplete_to_complete_error: "A completed response cannot be marked incomplete."
+
+  add_option: "Add Option"
+
+  privacy_mailer:
+    deactivation_mail:
+      subject: "The organization %{organization_name} has been de-registered"
+      salutation: "Hi!"
+      body:
+        line_1: "The organization %{organization_name} has chosen to de-register itself from our system."
+        line_2: "Its data and assets have been marked for deletion, and will be expunged soon."
+
+  formtastic:
+    actions:
+      create: "Create %{model}"
+
+  will_paginate:
+    previous_label: "<img alt=\"Prev\" class=\"prev\" src=\"/assets/prev.svg\">"
+    next_label: "<img alt=\"Next\" class=\"next\" src=\"/assets/next.svg\">"
+    page_gap: "&hellip;"
+
+    page_entries_info:
+      single_page:
+        zero:  "No %{model} found"
+        one:   "Displaying 1 %{model}"
+        other: "Displaying all %{count} %{model}"
+      single_page_html:
+        zero:  "No %{model} found"
+        one:   "Displaying <b>1</b> %{model}"
+        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
+
+      multi_page: "Displaying %{model} %{from} - %{to} of %{count}"
+      multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b>"
+
+  js:
+    untitled_survey: Untitled Survey
+    untitled_question: Untitled Question
+    untitled_category: Untitled Category
+    save_successful: Your survey was saved!
+    save_unsuccessful: We had trouble saving your survey.
+    first_option: First Option
+    second_option: Second Option
+    third_option: Third Option
+    questions_for: Questions for
+    require_csv_format: "Please enter a comma-separated list of options.\nThe provided format is invalid."
+    reordering_questions: Reordering Questions
+    new_record_unsaved_warning: "Unsaved changes will be lost if you proceed. Continue?"
+    confirm_add_question_to_finalized_survey: "Are you sure you wish to add a question to a finalized survey?"
+    confirm_add_option_to_finalized_survey: "Are you sure you wish to add a option to a finalized survey?"
+    untitled_multi_record_category: "Untitled Multi-Record"
+    uploading_image: "Your image is being uploaded. Please wait."
+
+  templates:
+    loading:
+      loading: "Loading..."
+
+  date:
+    formats:
+      default: "%d %b, %Y"
+
+  survey_dashboard:
+    index:
+      list_of_users_heading: "List of users with responses for %{survey_name}"
+      view_report_for_user_link: "View"
+      users: Users
+    show:
+      user_responses_dashboard_heading: "List of Responses"
+      date_table_heading: "Date"
+      incomplete_table_heading: "Incomplete"
+      complete_table_heading: "Complete"
